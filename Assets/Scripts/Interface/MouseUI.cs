@@ -32,7 +32,11 @@ public enum Labels
     Slide,
     ApertureKnob,
     ImmersionOil,
-    ImmersionOilCap
+    ImmersionOilCap,
+    HarpsichordKey,
+    HarpsichordTuningPanel,
+    HarpsichordRegulatorPin,
+    HarpsichordTuningHammer
 }
 
 
@@ -78,7 +82,7 @@ public class MouseUI : MonoBehaviour
 
     static GameObject Ego;
 
-    static Texture2D WedgeCursor, FingerCursor, HandCursor, GrabCursor, PressingFingerCursor, EyeCursor;
+    static Texture2D WedgeCursor, FingerCursor, HandCursor, GrabCursor, PressingFingerCursor, EyeCursor,SpinArrowCursor;
 
     static int Wedge = 0;
     static int Finger = 1;
@@ -86,6 +90,7 @@ public class MouseUI : MonoBehaviour
     static int Hand = 3;
     static int Grab = 4;
     static int Eye = 5;
+    static int SpinArrow = 6;
 
     static int CurrentCursor;
 
@@ -152,7 +157,7 @@ public class MouseUI : MonoBehaviour
             if (mouseUI.Label != Labels.NonInteractable)
             {
                 showAttributes(mouseUI);
-                assignBooleanValues(mouseUI);
+               // assignBooleanValues(mouseUI);
             }
 
             if (mouseUI.Movable)
@@ -213,6 +218,8 @@ public class MouseUI : MonoBehaviour
         HandCursor = Resources.Load("hand") as Texture2D;
         GrabCursor = Resources.Load("grab") as Texture2D;
         EyeCursor = Resources.Load("eye") as Texture2D;
+        SpinArrowCursor=Resources.Load("spin_arrow") as Texture2D;
+        
 
         Cursors = new List<GameCursor>();
 
@@ -222,6 +229,7 @@ public class MouseUI : MonoBehaviour
         Cursors.Add(new GameCursor(HandCursor, new Vector2(11, 3)));
         Cursors.Add(new GameCursor(GrabCursor, new Vector2(7, 2)));
         Cursors.Add(new GameCursor(EyeCursor, new Vector2(12, 12)));
+        Cursors.Add(new GameCursor(SpinArrowCursor, Vector2.zero));
 
         Tooltip_MiddleX = 120;
         Tooltip_SizeX = 2 * Tooltip_MiddleX;
@@ -245,6 +253,15 @@ public class MouseUI : MonoBehaviour
 
         UserFriendlyName = AttributedName(Label);
 
+        if (Label != Labels.NonInteractable)           ///  solves the pressable bug of the keys cause it initializes them with the label
+        {
+            Zoomable = BooleanValues[Label][0];        ///
+            Pressable = BooleanValues[Label][1];
+            Rotatable = BooleanValues[Label][2];
+            Movable = BooleanValues[Label][3];
+            Receptable = BooleanValues[Label][4];
+        }
+
         CurrentCursor = Wedge;
 
         RayHitPoint_for_MouseDown = Vector3.zero;
@@ -260,11 +277,37 @@ public class MouseUI : MonoBehaviour
 
         CurrentCursor = _CursorID;
 
-        Cursor.SetCursor(Cursors[CurrentCursor].Shape, Cursors[CurrentCursor].Offset, CursorMode.Auto);
+        Cursor.visible = true;
+
+        Cursor.SetCursor(Cursors[CurrentCursor].Shape,
+                         Cursors[CurrentCursor].Offset, 
+                         CursorMode.Auto);
 
     }
 
+    static void hideCursor()
+    {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        Cursor.visible = false;
+    }
 
+    static Camera getActiveCamera()    //NEW CODE FOR MOVABLE TUNING HAMMER CORRECTIONS
+    {
+        Camera[] cameras =
+            Camera.allCameras;
+
+        foreach (Camera cam in cameras)
+        {
+            if (cam.enabled &&
+                cam.gameObject.activeInHierarchy)
+            {
+                return cam;
+            }
+        }
+
+        return null;
+    }
+    
     public static void callOnGUI()
     {
 
@@ -290,7 +333,8 @@ public class MouseUI : MonoBehaviour
 
     static void DisplayFakeCursor()
     {
-        if (!UsingTwoObjectsTogether)
+       if (!UsingTwoObjectsTogether &&
+    !(ObjectBeingCarried != null && ObjectHoveringOver == null))
             GUI.DrawTexture(new Rect(Screen.width / 2 - Cursors[CurrentCursor].Offset.x,
                 Screen.height / 2 - Cursors[CurrentCursor].Offset.y, 32, 32),
                 Cursors[CurrentCursor].Shape);
@@ -325,34 +369,76 @@ public class MouseUI : MonoBehaviour
 
     void OnMouseOver()
     {
+        
 
         if (Label != Labels.NonInteractable && !TemporarilyInaccessible && (!Movable ||
-            EgoController.PermittingCollection_of_Objects[Ego.GetComponent<EgoController>().Mode]))
+            EgoController.PermittingCollection_of_Objects[Ego.GetComponent<EgoController>().Mode])) //SET THE PARENTHESES FOR !MOVABLE OFF  IF VISIBILITY IS WANTED EVEN IF NOT COLLECTING
         {
 
-            VectorDistance_from_Camera = transform.position - mainCamera.transform.position;
+            // VectorDistance_from_Camera = transform.position - mainCamera.transform.position;
+            Camera activeCamera =  //antikatastash ths panw grammhs me afto
+       getActiveCamera();
+
+            if (activeCamera == null)
+                return;
+
+            VectorDistance_from_Camera =
+                transform.position -
+                activeCamera.transform.position;
 
             if (!Rotating && VectorDistance_from_Camera.magnitude < MinimumDistance_for_Interaction)
             {
 
-                Text_for_Tooltip = UserFriendlyName;
+                Text_for_Tooltip = UserFriendlyName;     //change for harpsichord
 
-                if (ObjectBeingCarried == null && ObjectMouseIsDownOn == null)
+                InteractableObject interactable =
+                    GetComponent<InteractableObject>();
+
+                if (interactable != null)
+                {
+                    string CustomTooltip =
+                        interactable.getTooltipName();
+
+                    if (CustomTooltip != "")
+                        Text_for_Tooltip = CustomTooltip;
+                }                                               //change for harpsichord
+
+
+
+                //if (ObjectBeingCarried == null && ObjectMouseIsDownOn == null)
+                if (ObjectMouseIsDownOn == null)
                 {
 
                     ObjectHoveringOver = gameObject;
 
-                    if (Pressable)
-                        switchCursor(Finger);
-                    else if (Zoomable)
-                        switchCursor(Eye);
-                    else if (Rotatable || Movable)
-                        switchCursor(Hand);
+                    /*if (Label == Labels.HarpsichordKey)     //for the demo button to appear when pressing A2 note
+                    {
+                        HarpsichordKey key = GetComponent<HarpsichordKey>();
 
+                        if (key != null && key.Note == HarpsichordNote.A2)
+                            key.getHarpsichord().ShowDemoButton();
+                    }   */
+                    //  Debug.Log(gameObject.name + " Pressable=" + Pressable); // checks which keys are pressable
+                   
                 }
                 else if (Receptable && ObjectBeingCarried != null)
-                    //cursor is already grab in this case
+                    //cursor is already grab in this case // not anymore
                     ObjectHoveringOver = gameObject;
+
+                // if (Receptable)     
+                //    switchCursor(Hand);  // THE RECEPTABLE SWITCHES TO HAND ONLY WHEN SOMETHING CAN INTERACT WITH IT AND IS BEING CARRIED
+                if (Receptable && ObjectBeingCarried != null)
+                    switchCursor(Hand);
+                else if (Pressable)
+                    switchCursor(Finger);
+                else if (Zoomable)
+                    switchCursor(Eye);
+                else if (Rotatable)
+                    switchCursor(SpinArrow);
+                else if (Movable)
+                    switchCursor(Hand);
+                else
+                    switchCursor(Wedge);
 
             }
 
@@ -367,15 +453,23 @@ public class MouseUI : MonoBehaviour
         if (Label != Labels.NonInteractable && !Rotating)
         {
 
-            ObjectHoveringOver = null;
-
+            //ObjectHoveringOver = null;   //NECODE OR MOVABLE HAMMER
+            if (ObjectMouseIsDownOn == null)
+                ObjectHoveringOver = null;
             if (ObjectBeingCarried == null)
                 switchCursor(Wedge);
             else
-                switchCursor(Grab);
+                // switchCursor(Grab);
+                hideCursor();  //so the grab doesn't appear when holding an object after leaving an interactable object
 
         }
+       /* if (Label == Labels.HarpsichordKey)     //to hide the demo button when exiting A2 key
+        {
+            HarpsichordKey key = GetComponent<HarpsichordKey>();
 
+            if (key != null && key.Note == HarpsichordNote.A2)
+                key.getHarpsichord().HideDemoButton();
+        } */
     }
 
 
@@ -423,28 +517,35 @@ public class MouseUI : MonoBehaviour
             else if (Receptable && ObjectBeingCarried != null)
             {
 
-                switchCursor(Hand);
+                switchCursor(Hand);  
 
             }
 
         }
-        else if (ObjectBeingCarried != null && tag == "Bench")
+        //else if (ObjectBeingCarried != null && tag == "Bench" || tag == "DropArea")
+        else if ( ObjectBeingCarried != null && (tag == "Bench" || tag == "DropArea"))
         {
 
             //first ray casted - when mouse is down
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            //Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Camera activeCamera =getActiveCamera();
+                if (activeCamera == null)    //change from main camera code to active camera code
+                return;
+          Ray ray =activeCamera.ScreenPointToRay(Input.mousePosition );
             RaycastHit hit;
 
             Physics.Raycast(ray, out hit);
 
-            VectorDistance_from_Camera = hit.point - mainCamera.transform.position;
+            //VectorDistance_from_Camera = hit.point - mainCamera.transform.position;
+            VectorDistance_from_Camera = hit.point - activeCamera.transform.position;
 
             if (VectorDistance_from_Camera.magnitude < MinimumDistance_for_Interaction)
             {
 
                 RayHitPoint_for_MouseDown = hit.point;
 
-                switchCursor(Hand);
+                // switchCursor(Hand);    //i dont want to show anything when object is being carried
+                 hideCursor();
 
             }
 
@@ -477,6 +578,8 @@ public class MouseUI : MonoBehaviour
 
     async Task OnMouseUp()
     {
+        if (Pressable)                                       //harpsichord change!
+            GetComponent<InteractableObject>().release();
 
         if (Rotating)
         {
@@ -490,27 +593,56 @@ public class MouseUI : MonoBehaviour
         }
         else if (Label != Labels.NonInteractable)
         {
-
+            
             if (ObjectMouseIsDownOn == gameObject && ObjectHoveringOver == gameObject)
             {
 
-                if (Movable && ObjectBeingCarried == null)
-                { //clicking on an object to pick it up
+                /*  if (Movable && ObjectBeingCarried == null)
+                  { //clicking on an object to pick it up
 
-                    setInteractivity(false);
+                      // setInteractivity(false);
+                      GetComponent<MovableObject>().prepareForCarrying();
 
-                    if (Place != null && Place.GetComponent<InteractableObject>())
-                        Place.GetComponent<InteractableObject>().evacuate(gameObject);
+                      if (Place != null && Place.GetComponent<InteractableObject>())
+                          Place.GetComponent<InteractableObject>().evacuate(gameObject);
 
-                    Ego.GetComponent<EgoController>().attach(gameObject);
+                      Ego.GetComponent<EgoController>().attach(gameObject);
 
-                    ObjectBeingCarried = gameObject;
+                      ObjectBeingCarried = gameObject;
 
-                    switchCursor(Grab);
+                      // switchCursor(Grab);
+                      hideCursor();   // cursor vanishes when holding an object and only shows the objects
 
+                  }*/
+               /* if (Movable &&
+                    ObjectBeingCarried == null &&
+                    EgoController.PermittingCollection_of_Objects[
+                     Ego.GetComponent<EgoController>().Mode]) */    // NEW CODE IF I WANT VISIBILITY BUT NOT COLLECTION OF OBJECTS
+                    if (Movable && ObjectBeingCarried == null) //NEWCODE FOR MOVABLE HAMMER
+                {
+                    GetComponent<MovableObject>()
+                        .prepareForCarrying();
+
+                    if (Place != null &&
+                        Place.GetComponent<InteractableObject>())
+                    {
+                        Place
+                            .GetComponent<InteractableObject>()
+                            .evacuate(gameObject);
+                    }
+
+                    Ego
+                        .GetComponent<EgoController>()
+                        .attach(gameObject);
+
+                    ObjectBeingCarried =
+                        gameObject;
+
+                    hideCursor();
                 }
                 else if (Receptable && ObjectBeingCarried != null)
                 {//clicking on an object to put the object being carried on it
+                   
 
                     await tryUsingTogether_with_ObjectBeingCarried();
 
@@ -521,11 +653,18 @@ public class MouseUI : MonoBehaviour
             }
 
         }
-        else if (ObjectBeingCarried != null && tag == "Bench")
+        // else if (ObjectBeingCarried != null && tag == "Bench" || tag == "DropArea")
+          else if (ObjectBeingCarried != null &&(tag == "Bench" || tag == "DropArea") )
         {
 
             //second ray casted - when mouse is up
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            // Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Camera activeCamera = getActiveCamera();
+
+            if (activeCamera == null)
+                return;
+
+            Ray ray = activeCamera.ScreenPointToRay(  Input.mousePosition );
             RaycastHit hit;
 
             Physics.Raycast(ray, out hit);
@@ -540,16 +679,18 @@ public class MouseUI : MonoBehaviour
 
                 ObjectBeingCarried.transform.position = new Vector3(hit.point.x, hit.point.y + ObjectBeingCarried.GetComponent<MovableObject>().Y_Offset_for_Relocation, hit.point.z);
 
-                ObjectBeingCarried.GetComponent<MouseUI>().setInteractivity(true);
+                //ObjectBeingCarried.GetComponent<MouseUI>().setInteractivity(true);
+                ObjectBeingCarried.GetComponent<MovableObject>().prepareForRelocation();
 
                 ObjectBeingCarried.GetComponent<MouseUI>().Place = gameObject;
 
                 ObjectBeingCarried = null;
+                switchCursor(Wedge); 
 
             }
             else
-                switchCursor(Grab);
-
+                //  switchCursor(Grab);
+                hideCursor();
         }
 
         ObjectMouseIsDownOn = null;
@@ -575,37 +716,97 @@ public class MouseUI : MonoBehaviour
         //#if UNITY_EDITOR
         //        Cursor.visible = true;
 
-        if (ResultValues.JointUse_TookPlace)
-        {
+        /*  if (ResultValues.JointUse_TookPlace)      
+          {
 
-            setInteractivity(ResultValues.Receptor_NewInteractivity);
-            //Receptor's handling needs to be BEFORE ObjectBeingCarried's because ObjectBeingCarried might become child of Receptor
+              setInteractivity(ResultValues.Receptor_NewInteractivity);
+              //Receptor's handling needs to be BEFORE ObjectBeingCarried's because ObjectBeingCarried might become child of Receptor
+
+              if (ResultValues.Receptor_NewPlace != null)
+                  Place = ResultValues.Receptor_NewPlace;
+
+              ObjectBeingCarried.GetComponent<MouseUI>().setInteractivity(ResultValues.ObjectBeingCarried_NewInteractivity);
+              //interactivity of ObjectBeingCarried needs to be set BEFORE potentially changing its value to null
+
+              if (ResultValues.ObjectBeingCarried_NewPlace != null)
+              {
+
+                  ObjectBeingCarried.GetComponent<MouseUI>().Place = ResultValues.ObjectBeingCarried_NewPlace;
+
+                  ObjectBeingCarried = null;
+
+                  switchCursor(Wedge);
+
+              }
+              else
+              {//if continuing carrying the object, e.g. after using immersion oil with slide
+
+                  Ego.GetComponent<EgoController>().attach(ObjectBeingCarried); //in case it has been detached (e.g. the immersion oil has become child of slide)
+
+                  switchCursor(Grab);
+
+              }
+
+          } */
+        if (ResultValues.JointUse_TookPlace)   //NEW CODE FOR MOVABLE HAMMER
+        {
+            GameObject carriedObject =
+                ObjectBeingCarried;
+
+
+            setInteractivity(
+                ResultValues.Receptor_NewInteractivity
+            );
+
 
             if (ResultValues.Receptor_NewPlace != null)
-                Place = ResultValues.Receptor_NewPlace;
+            {
+                Place =
+                    ResultValues.Receptor_NewPlace;
+            }
 
-            ObjectBeingCarried.GetComponent<MouseUI>().setInteractivity(ResultValues.ObjectBeingCarried_NewInteractivity);
-            //interactivity of ObjectBeingCarried needs to be set BEFORE potentially changing its value to null
+
+            if (carriedObject != null)
+            {
+                carriedObject
+                    .GetComponent<MouseUI>()
+                    .setInteractivity(
+                        ResultValues
+                            .ObjectBeingCarried_NewInteractivity
+                    );
+            }
+
 
             if (ResultValues.ObjectBeingCarried_NewPlace != null)
             {
+                if (carriedObject != null)
+                {
+                    carriedObject
+                        .GetComponent<MouseUI>()
+                        .Place =
+                        ResultValues
+                            .ObjectBeingCarried_NewPlace;
+                }
 
-                ObjectBeingCarried.GetComponent<MouseUI>().Place = ResultValues.ObjectBeingCarried_NewPlace;
-
-                ObjectBeingCarried = null;
+                ObjectBeingCarried =
+                    null;
 
                 switchCursor(Wedge);
-
             }
             else
-            {//if continuing carrying the object, e.g. after using immersion oil with slide
+            {
+                if (carriedObject != null)
+                {
+                    Ego
+                        .GetComponent<EgoController>()
+                        .attach(carriedObject);
 
-                Ego.GetComponent<EgoController>().attach(ObjectBeingCarried); //in case it has been detached (e.g. the immersion oil has become child of slide)
+                    ObjectBeingCarried =
+                        carriedObject;
 
-                switchCursor(Grab);
-
+                    hideCursor();
+                }
             }
-
         }
 
     }
@@ -620,7 +821,8 @@ public class MouseUI : MonoBehaviour
         {
 
             if (OtherColliders[i].gameObject.tag != "Bench" &&
-                OtherColliders[i].gameObject.tag != "Room")
+                OtherColliders[i].gameObject.tag != "Room" &&
+                OtherColliders[i].gameObject.tag != "DropArea")
             {
 
                 return true;
@@ -669,7 +871,12 @@ public class MouseUI : MonoBehaviour
         {Labels.Slide, new OrdinaryNames ("SPECIMEN","ΔΕΙΓΜΑ")},
         {Labels.ApertureKnob, new OrdinaryNames ("APERTURE KNOB","ΜΟΧΛΟΣ ΙΡΙΔΑΣ")},
         {Labels.ImmersionOil, new OrdinaryNames ("IMMERSION OIL", "ΚΕΔΡΕΛΑΙΟ")},
-        {Labels.ImmersionOilCap, new OrdinaryNames ("CAP", "ΚΑΠΑΚΙ")}
+        {Labels.ImmersionOilCap, new OrdinaryNames ("CAP", "ΚΑΠΑΚΙ")},
+        {Labels.HarpsichordKey, new OrdinaryNames ("KEY","ΠΛΗΚΤΡΟ") },    //!Harpsichord key change!
+        {Labels.HarpsichordTuningPanel, new OrdinaryNames("TUNING AREA", "ΠΕΡΙΟΧΗ ΚΟΥΡΔΙΣΜΑΤΟΣ")},
+        {Labels.HarpsichordRegulatorPin, new OrdinaryNames("REGULATOR PIN", "ΠΕΙΡΟΣ ΚΟΥΡΔΙΣΜΑΤΟΣ")},
+        {Labels.HarpsichordTuningHammer, new OrdinaryNames("TUNING HAMMER", "ΚΛΕΙΔΙ ΚΟΥΡΔΙΣΜΑΤΟΣ")}
+
     };
 
     public static string AttributedName(Labels _NameLabel)
@@ -695,7 +902,11 @@ public class MouseUI : MonoBehaviour
         {Labels.Slide, new List<bool> {false,false,false,true,true}},
         {Labels.ApertureKnob, new List<bool> {false,false,true,false,false}},
         {Labels.ImmersionOil, new List<bool> {false,false,false,true,true}},
-        {Labels.ImmersionOilCap, new List<bool> {false,false,false,true,false}}
+        {Labels.ImmersionOilCap, new List<bool> {false,false,false,true,false}},
+        {Labels.HarpsichordKey, new List<bool>{false,true,false,false,false }},   //!Harpsichord Key change
+        {Labels.HarpsichordTuningPanel, new List<bool>{true,false,false,false,false}},
+        {Labels.HarpsichordRegulatorPin, new List<bool>{false,false,false,false,true}},
+        {Labels.HarpsichordTuningHammer, new List<bool>{false,false,false,true,false}},
     };
 
 

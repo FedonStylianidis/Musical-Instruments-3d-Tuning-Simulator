@@ -26,6 +26,10 @@ public class InteractableObject : MonoBehaviour
     {
     }
 
+    public virtual string getTooltipName()        //Harpsichord change!
+    {
+        return "";
+    }
     public virtual void press()
     {
     }
@@ -41,7 +45,9 @@ public class InteractableObject : MonoBehaviour
     public virtual void doneRotating()
     {
     }
-
+    public virtual void release()    //Harpsichord change!
+    {
+    }
     public virtual async Task<Values_After_JointUse> use_with(GameObject _OtherObject)
     {
         Values_After_JointUse ReturnValues = new Values_After_JointUse(false);

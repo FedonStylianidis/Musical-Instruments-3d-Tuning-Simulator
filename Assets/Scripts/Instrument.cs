@@ -13,29 +13,32 @@ using UnityEditor;
 
 public class Instrument : MonoBehaviour
 {
+    public Camera MainCamera; //
+    public Camera FocusCamera;//  new camera for the harpsichord, assigned in inspector
+
 
     public const bool locked = true;
-    public const bool unlocked = false;
+     public const bool unlocked = false;
 
-    public const bool ON = true;
-    public const bool OFF = false;
+    //public const bool ON = true;
+    //public const bool OFF = false;
 
-    public const bool connected = true;
-    public const bool disconnected = false;
+   //public const bool connected = true;
+   // public const bool disconnected = false;
 
     [HideInInspector]
-    public GameObject ControlLamp, ControlPanel, ControlExtraUI;
+    public GameObject ControlPanel, ControlExtraUI;
 
     [HideInInspector]
     public GameObject Location;
 
-    [HideInInspector]
-    public bool State;
+   // [HideInInspector]
+   // public bool State;
 
-    bool PowerController_State;
+   // bool PowerController_State;
 
-    [HideInInspector]
-    public bool Cable_State; //needs to be public so as to be checked externally
+   // [HideInInspector]
+   // public bool Cable_State; //needs to be public so as to be checked externally
 
     public static GameObject Ego;
 
@@ -89,12 +92,8 @@ public class Instrument : MonoBehaviour
 
         View = unlocked;
 
-        setFocusValues();
-
-        Cable_State = connected; //Temporary, until we implement the socket
-        PowerController_State = OFF;
-
-        State = OFF;
+        if (Location != null)
+            setFocusValues();
 
     }
 
@@ -146,28 +145,92 @@ public class Instrument : MonoBehaviour
     }
 
 
+    /* public void lockView()
+      {
+          Ego.GetComponent<EgoController>().setMode(Focus_Mode, gameObject, transform.position.x + dx, transform.position.z + dz, Y_Angle, Focus_Camera_RotX, Focus_Field_of_View);
+      }  
+      public virtual void lockView()
+      {
+          Ego.GetComponent<EgoController>().setMode(
+              Focus_Mode,
+              gameObject,
+              transform.position.x + dx,
+              transform.position.y + 50F,
+              transform.position.z + dz,
+              Y_Angle,
+              80F,
+              Focus_Field_of_View
+          );
+      }
+
+       public void lockView()
+       {
+           Ego.GetComponent<EgoController>().setMode(
+               Focus_Mode,
+               gameObject,
+               Location.transform.position.x,
+               Location.transform.position.z,
+               Location.transform.eulerAngles.y + Focus_Theta,
+               Focus_Camera_RotX,
+               Focus_Field_of_View
+           ); 
+       } */
+   /* public  void lockView()
+    {
+        Ego.GetComponent<EgoController>().setMode(
+            Focus_Mode,
+            gameObject,
+            Location.transform.position.x - 0.5F,
+            Location.transform.position.y,
+            Location.transform.position.z,
+            Location.transform.eulerAngles.y,
+            Location.transform.eulerAngles.x,
+            Focus_Field_of_View
+        );
+    }  */
     public void lockView()
     {
-        Ego.GetComponent<EgoController>().setMode(Focus_Mode, gameObject, transform.position.x + dx, transform.position.z + dz, Y_Angle, Focus_Camera_RotX, Focus_Field_of_View);
+        Ego.GetComponent<EgoController>().setMode(Focus_Mode,gameObject,false);
+        
+        MainCamera.enabled = false;
+        FocusCamera.enabled = true;
+        if (MouseUI.ObjectBeingCarried != null)    //reattaches the object being carried to the new camera
+        {
+            Ego.GetComponent<EgoController>()
+               .attach(MouseUI.ObjectBeingCarried);
+        }
     }
-
-
-    public void unlockView()
+    /*public void unlockView()
     {
         Ego.GetComponent<EgoController>().setMode(Modes.Navigation);
     }
+    */
 
+    public void unlockView()
+    {
+        FocusCamera.enabled = false;
+        MainCamera.enabled = true;
 
-    public void updateFeedback_from_PowerController(bool _New_PowerController_State)
+        if (MouseUI.ObjectBeingCarried != null)   //reattaches the object being carried to the previous camera
+        {
+            Ego.GetComponent<EgoController>()
+               .attach(MouseUI.ObjectBeingCarried);
+        }
+
+        Ego.GetComponent<EgoController>().setMode(Modes.Navigation, null, false);
+
+    }
+
+    /* public void updateFeedback_from_PowerController(bool _New_PowerController_State)
     {
 
         PowerController_State = _New_PowerController_State;
 
         updateState();
 
-    }
+    } */
 
-    public virtual void updateFeedback_from_Cable(bool _New_Cable_State)
+    /*public virtual void updateFeedback_from_Cable(bool _New_Cable_State)
     {
 
         Cable_State = _New_Cable_State;
@@ -177,11 +240,11 @@ public class Instrument : MonoBehaviour
         if (ControlPanel != null)
             ControlPanel.GetComponent<Panel>().updateZoomability(_New_Cable_State);
 
-    }
+    } */
 
 
 
-    void updateState()
+   /* void updateState()
     {
 
         State = Cable_State && PowerController_State;
@@ -189,8 +252,8 @@ public class Instrument : MonoBehaviour
         if (ControlLamp != null)
             ControlLamp.GetComponent<Lamp>().updateState(State);
 
-    }
-
+    }  */
+    
 
     //public Vector3 Offset;
     //public float XAngle;

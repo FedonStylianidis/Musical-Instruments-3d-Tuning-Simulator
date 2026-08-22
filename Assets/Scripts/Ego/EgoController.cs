@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -13,7 +13,11 @@ using UnityEngine.Rendering;
 public enum Modes
 {
     Navigation,
+    Harpsichord_Tuning,
+    SnareDrum_Tuning,
+    Recorder_Tuning,
     Microscoping
+
 }
 
 
@@ -120,7 +124,7 @@ public class EgoController : MonoBehaviour
     }
 
 
-    public void setMode(Modes _Mode)
+  /*  public void setMode(Modes _Mode)
     { //for navigation
 
         CursorFrozen = true;
@@ -133,35 +137,88 @@ public class EgoController : MonoBehaviour
         Mode = _Mode;
 
         restoreSavedPresence();
+        controller.enabled = true;  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+
+    }  */
+
+    public void setMode(Modes _Mode)      ///gia to harpsichord
+    {
+        CursorFrozen = (_Mode == Modes.Navigation);
+
+        InstrumentOnFocus = null;
+        Mode = _Mode;
+
+        if (_Mode == Modes.Navigation)
+            restoreSavedPresence();
     }
 
-
-
-    public void setMode(Modes _Mode, GameObject _InstrumentOnFocus, float _X_position,
-        float _Z_position, float _Y_angle, float _X_camera_angle, float _FieldOfView)
+    public void setMode(Modes _Mode, GameObject _InstrumentOnFocus, bool _RestorePresence)   //new overload for set mode
     {
-
-        CursorFrozen = false;
+        CursorFrozen = (_Mode == Modes.Navigation);
 
 #if !UNITY_EDITOR
-        Cursor.visible = true;
+    Cursor.visible = !CursorFrozen;
 #endif
+
+        InstrumentOnFocus = _InstrumentOnFocus;
+        Mode = _Mode;
+
+        if (_RestorePresence)
+            restoreSavedPresence();
+    }
+
+    /* public void setMode(Modes _Mode, GameObject _InstrumentOnFocus, float _X_position,
+         float _Z_position, float _Y_angle, float _X_camera_angle, float _FieldOfView)
+     {
+
+         CursorFrozen = false;
+
+ #if !UNITY_EDITOR
+         Cursor.visible = true;
+ #endif
+
+         if (Mode == Modes.Navigation)
+             saveCurrentPresence();
+
+         InstrumentOnFocus = _InstrumentOnFocus;
+         Mode = _Mode;
+
+         transform.position = new Vector3(_X_position, transform.position.y, _Z_position);
+         transform.eulerAngles = new Vector3(0F, _Y_angle, 0F);
+         EmbeddedCamera.localEulerAngles = new Vector3(_X_camera_angle, 0F, 0F);
+         EmbeddedCamera.GetComponent<Camera>().fieldOfView = _FieldOfView;
+
+     }*/
+
+    public void setMode(                       
+    Modes _Mode,
+    GameObject _InstrumentOnFocus,
+    float _X_position,
+    float _Y_position,
+    float _Z_position,
+    float _Y_angle,
+    float _X_camera_angle,
+    float _FieldOfView)
+    {
+        CursorFrozen = false;
 
         if (Mode == Modes.Navigation)
             saveCurrentPresence();
 
         InstrumentOnFocus = _InstrumentOnFocus;
         Mode = _Mode;
-
-        transform.position = new Vector3(_X_position, transform.position.y, _Z_position);
+        controller.enabled = false;  //  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        transform.position = new Vector3(_X_position, _Y_position, _Z_position);
         transform.eulerAngles = new Vector3(0F, _Y_angle, 0F);
         EmbeddedCamera.localEulerAngles = new Vector3(_X_camera_angle, 0F, 0F);
+
+        YRotation = _Y_angle;
+        xRotation = _X_camera_angle;         //sync the variables so they don't use weird angles
+
+
         EmbeddedCamera.GetComponent<Camera>().fieldOfView = _FieldOfView;
-
     }
-
-
     void saveCurrentPresence()
     {
 
@@ -183,6 +240,9 @@ public class EgoController : MonoBehaviour
         transform.eulerAngles = new Vector3(0F, Saved_Y_angle, 0F);
 
         EmbeddedCamera.eulerAngles = new Vector3(Saved_Camera_X_Angle, 0F, 0F);
+
+        YRotation = Saved_Y_angle;
+        xRotation = Saved_Camera_X_Angle;
 
         EmbeddedCamera.GetComponent<Camera>().fieldOfView = DefaultFieldOfView;
 
@@ -217,60 +277,60 @@ public class EgoController : MonoBehaviour
             //   {
 
             move_horizontally = Input.GetAxis("Horizontal");
-                move_vertically = Input.GetAxis("Vertical");
-          //  }
+            move_vertically = Input.GetAxis("Vertical");
+            //  }
 
             rotate_horizontally = Input.GetAxis("Mouse X");
             rotate_vertically = Input.GetAxis("Mouse Y");
 
-        }
-        Vector3 move = transform.right * move_horizontally + transform.forward * move_vertically;
-        controller.Move(move * speed * Time.deltaTime);
-        //check if the player is on the ground so he can jump
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            //the equation for jumping
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
 
-        velocity.y += gravity * Time.deltaTime;
+            Vector3 move = transform.right * move_horizontally + transform.forward * move_vertically;
+            controller.Move(move * speed * Time.deltaTime);
+            //check if the player is on the ground so he can jump
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                //the equation for jumping
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
 
-        controller.Move(velocity * Time.deltaTime);
-        /* if (move_vertically != 0F)
-        {
-            
-            rb.MovePosition(transform.position + transform.forward * LinearVerticalSpeed * move_vertically * Time.deltaTime);
+            velocity.y += gravity * Time.deltaTime;
 
-            move_vertically = 0F;
+            controller.Move(velocity * Time.deltaTime);
+            /* if (move_vertically != 0F)
+            {
 
-        }
+                rb.MovePosition(transform.position + transform.forward * LinearVerticalSpeed * move_vertically * Time.deltaTime);
 
-        if (move_horizontally != 0F)
-        {
+                move_vertically = 0F;
 
-            rb.MovePosition(transform.position + transform.right * LinearHorizontalSpeed * move_horizontally * Time.deltaTime);
+            }
 
-            move_horizontally = 0F;
+            if (move_horizontally != 0F)
+            {
 
-        } */
+                rb.MovePosition(transform.position + transform.right * LinearHorizontalSpeed * move_horizontally * Time.deltaTime);
 
-/*<-    if (!MouseUI.Rotating)
-{
-    float mouseX = rotate_horizontally * mouseSensitivity * Time.deltaTime;
-    float mouseY = rotate_vertically * mouseSensitivity * Time.deltaTime;
+                move_horizontally = 0F;
 
-    //control rotation around x axis (Look up and down)
-    xRotation -= mouseY;
+            } */
 
-    //we clamp the rotation so we cant Over-rotate (like in real life)
-    xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            if (!MouseUI.Rotating)
+            {
+                float mouseX = rotate_horizontally * mouseSensitivity * Time.deltaTime;
+                float mouseY = rotate_vertically * mouseSensitivity * Time.deltaTime;
 
-    //control rotation around y axis (Look up and down)
-    YRotation += mouseX;
+                //control rotation around x axis (Look up and down)
+                xRotation -= mouseY;
 
-    //applying both rotations
-    transform.localRotation = Quaternion.Euler(xRotation, YRotation, 0f);
+                //we clamp the rotation so we cant Over-rotate (like in real life)
+                xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
+                //control rotation around y axis (Look up and down)
+                YRotation += mouseX;
+
+                //applying both rotations
+                transform.localRotation = Quaternion.Euler(xRotation, YRotation, 0f);
+            }
     /* if (rotate_vertically != 0F)
      {
 
@@ -292,97 +352,161 @@ public class EgoController : MonoBehaviour
 
      }  */
 
-/*<- }
+ }
 
-  if (Input.GetKeyUp(KeyCode.Escape))
-      Application.Quit();
+        //<- if (Input.GetKeyUp(KeyCode.Escape))
+        //  Application.Quit();
+        if (MouseUI.ObjectBeingCarried != null &&
+            !CursorFrozen)
+        {
+            MovableObject movable =
+                MouseUI.ObjectBeingCarried
+                    .GetComponent<MovableObject>();
 
-}
+            if (movable != null)
+            {
+                Camera activeCamera = null;
 
+                Camera[] cameras = Camera.allCameras;
 
-/*  bool withinVerticalRotationLimits()
-{
+                foreach (Camera cam in cameras)
+                {
+                    if (cam.enabled &&
+                        cam.gameObject.activeInHierarchy)
+                    {
+                        activeCamera = cam;
+                        break;
+                    }
+                }
 
-  return reduced(EmbeddedCamera.localEulerAngles.x) -
-              AngularVerticalSpeed * (rotate_vertically - 1) >= MinimumXAngle &&
-              reduced(EmbeddedCamera.localEulerAngles.x) -
-              AngularVerticalSpeed * (rotate_vertically + 1) <= MaximumXAngle;
+                movable.followMouse(activeCamera);
+            }
+        }
 
-}
-
-
-float reduced(float _Angle)
-{
-
-  float NewAngle = _Angle;
-
-  if (NewAngle > 270F)
-      NewAngle -= 360F;
-
-  return NewAngle;
-
-}
-
-
-void OnCollisionEnter(Collision _collision)
-{
-
-  if (_collision.gameObject.layer == FurnitureLayer || _collision.gameObject.layer == WallsLayer)
-  {
-
-      Halt = true;
-
-      rb.linearVelocity = Vector3.zero;
-
-      StartCoroutine(unHalting());
-
-  }
-
-}
+    }
 
 
-void OnCollisionExit(Collision _collision)
-{
+    /*  bool withinVerticalRotationLimits()
+    {
 
-  if (_collision.gameObject.layer == FurnitureLayer || _collision.gameObject.layer == WallsLayer)
-  {
+      return reduced(EmbeddedCamera.localEulerAngles.x) -
+                  AngularVerticalSpeed * (rotate_vertically - 1) >= MinimumXAngle &&
+                  reduced(EmbeddedCamera.localEulerAngles.x) -
+                  AngularVerticalSpeed * (rotate_vertically + 1) <= MaximumXAngle;
+
+    }
+
+
+    float reduced(float _Angle)
+    {
+
+      float NewAngle = _Angle;
+
+      if (NewAngle > 270F)
+          NewAngle -= 360F;
+
+      return NewAngle;
+
+    }
+
+
+    void OnCollisionEnter(Collision _collision)
+    {
+
+      if (_collision.gameObject.layer == FurnitureLayer || _collision.gameObject.layer == WallsLayer)
+      {
+
+          Halt = true;
+
+          rb.linearVelocity = Vector3.zero;
+
+          StartCoroutine(unHalting());
+
+      }
+
+    }
+
+
+    void OnCollisionExit(Collision _collision)
+    {
+
+      if (_collision.gameObject.layer == FurnitureLayer || _collision.gameObject.layer == WallsLayer)
+      {
+
+          Halt = false;
+
+      }
+
+    }
+
+
+    IEnumerator unHalting()
+    {
+
+      yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.DownArrow)
+      || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.W)
+      || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D));
 
       Halt = false;
 
-  }
+    } */
 
-}
+    /* public void attach(GameObject _object)      
+      {
+          //RestoreUprightPosition ();
+          _object.transform.parent = EmbeddedCamera;
+          _object.transform.localPosition = new Vector3(0F, _object.GetComponent<MovableObject>().Y_Offset_for_Carrying, 0.5F);
+          _object.GetComponent<MovableObject>().rotateObject_for_Carrying();
+      }
+    */
+    /*public void attach(GameObject _object)
+    {
+        _object.transform.parent = EmbeddedCamera;
 
+        _object
+            .GetComponent<MovableObject>()
+            .setCarryingPose();
+    } */
+    public void attach(GameObject _object)
+    {
+        Camera activeCamera = getActiveCamera();
 
-IEnumerator unHalting()
-{
+        if (activeCamera == null)
+        {
+            Debug.LogWarning("No active camera found.");
+            return;
+        }
 
-  yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.DownArrow)
-  || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.W)
-  || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D));
+        _object.transform.SetParent(activeCamera.transform);
 
-  Halt = false;
+        _object.GetComponent<MovableObject>().setCarryingPose();
+    }
 
-} */
+    private Camera getActiveCamera()
+    {
+        Camera[] cameras = Camera.allCameras;
 
-/*<- public void attach(GameObject _object)
-  {
-      //RestoreUprightPosition ();
-      _object.transform.parent = EmbeddedCamera;
-      _object.transform.localPosition = new Vector3(0F, _object.GetComponent<MovableObject>().Y_Offset_for_Carrying, 0.5F);
-      _object.GetComponent<MovableObject>().rotateObject_for_Carrying();
-  }
+        foreach (Camera cam in cameras)
+        {
+            if (cam.enabled && cam.gameObject.activeInHierarchy)
+                return cam;
+        }
 
+        return null;
+    }
 
-  public static Dictionary<Modes, bool> PermittingCollection_of_Objects = new Dictionary<Modes, bool>() {
+    public static Dictionary<Modes, bool> PermittingCollection_of_Objects = new Dictionary<Modes, bool>() {
       {Modes.Navigation,true},
-      {Modes.Microscoping,false}
+      {Modes.Microscoping,false},
+      {Modes.Harpsichord_Tuning, true},
+      {Modes.SnareDrum_Tuning, true},
+      {Modes.Recorder_Tuning, true}
   };
 
-}    */
+}   
 
 
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -527,10 +651,11 @@ public class EgoController : MonoBehaviour
         EmbeddedCamera.localEulerAngles = new Vector3(_X_camera_angle, 0F, 0F);
         EmbeddedCamera.GetComponent<Camera>().fieldOfView = _FieldOfView;
 
-    }
+    }  
 
+   
 
-    void saveCurrentPresence()
+        void saveCurrentPresence()
     {
 
         Saved_X_position = transform.position.x;
@@ -719,3 +844,4 @@ public class EgoController : MonoBehaviour
     };
 
 }
+*/

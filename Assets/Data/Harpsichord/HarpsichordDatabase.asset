@@ -1,0 +1,315 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb20c9234781894cba43f90a743bfb0, type: 3}
+  m_Name: HarpsichordDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::HarpsichordDatabase
+  Keys:
+  - Note: 0
+    DisplayName: F1
+    TargetFrequency: 43.65
+    CurrentFrequency: 43.65
+    Sound: {fileID: 8300000, guid: 4333cfda1156ca44b889d1b57e4bca20, type: 3}
+  - Note: 1
+    DisplayName: F#1
+    TargetFrequency: 46.25
+    CurrentFrequency: 46.25
+    Sound: {fileID: 8300000, guid: cdf60ef85ea59e94681053a2892caa89, type: 3}
+  - Note: 2
+    DisplayName: G1
+    TargetFrequency: 49
+    CurrentFrequency: 49
+    Sound: {fileID: 8300000, guid: a13cff621fd4d874d95bc6bbb33db0fa, type: 3}
+  - Note: 3
+    DisplayName: G#1
+    TargetFrequency: 51.91
+    CurrentFrequency: 51.91
+    Sound: {fileID: 8300000, guid: 3b12fce447db0624296fc5ab2afca49d, type: 3}
+  - Note: 4
+    DisplayName: A1
+    TargetFrequency: 55
+    CurrentFrequency: 55
+    Sound: {fileID: 8300000, guid: 7c22659e8fa061945b7043cd7aa242a4, type: 3}
+  - Note: 5
+    DisplayName: A#1
+    TargetFrequency: 58.27
+    CurrentFrequency: 58.27
+    Sound: {fileID: 8300000, guid: 426c1081e44bfd84d845b8ecc57b27f0, type: 3}
+  - Note: 6
+    DisplayName: B1
+    TargetFrequency: 61.74
+    CurrentFrequency: 61.74
+    Sound: {fileID: 8300000, guid: c29ea7051ac2cac42af7addcb3550071, type: 3}
+  - Note: 7
+    DisplayName: C2
+    TargetFrequency: 65.41
+    CurrentFrequency: 65.41
+    Sound: {fileID: 8300000, guid: 781993ace9ff7814f86d3c69faf4b2e0, type: 3}
+  - Note: 8
+    DisplayName: C#2
+    TargetFrequency: 69.3
+    CurrentFrequency: 69.3
+    Sound: {fileID: 8300000, guid: 702e65bf7a776c84eacc5081814c1efb, type: 3}
+  - Note: 9
+    DisplayName: D2
+    TargetFrequency: 73.42
+    CurrentFrequency: 73.42
+    Sound: {fileID: 8300000, guid: 604d26c38a5ee2a40932fe92147060b9, type: 3}
+  - Note: 10
+    DisplayName: D#2
+    TargetFrequency: 77.78
+    CurrentFrequency: 77.78
+    Sound: {fileID: 8300000, guid: a893e88399561be488f73cce7da5ff61, type: 3}
+  - Note: 11
+    DisplayName: E2
+    TargetFrequency: 82.41
+    CurrentFrequency: 82.41
+    Sound: {fileID: 8300000, guid: 34664e203afb694429143d9ca2d3a603, type: 3}
+  - Note: 12
+    DisplayName: F2
+    TargetFrequency: 87.31
+    CurrentFrequency: 87.31
+    Sound: {fileID: 8300000, guid: 0c86ac5e812ac1642abc23a359136c92, type: 3}
+  - Note: 13
+    DisplayName: F#2
+    TargetFrequency: 92.5
+    CurrentFrequency: 92.5
+    Sound: {fileID: 8300000, guid: 253c15ae9c8599849816b6b65168ddcf, type: 3}
+  - Note: 14
+    DisplayName: G2
+    TargetFrequency: 98
+    CurrentFrequency: 98
+    Sound: {fileID: 8300000, guid: 925bfc9ef43f54a4ebb5ffab8fa5fb81, type: 3}
+  - Note: 15
+    DisplayName: G#2
+    TargetFrequency: 103.83
+    CurrentFrequency: 103.83
+    Sound: {fileID: 8300000, guid: 36c4faa911b6dea4e95f747813b5c098, type: 3}
+  - Note: 16
+    DisplayName: A2
+    TargetFrequency: 110
+    CurrentFrequency: 110
+    Sound: {fileID: 8300000, guid: 83d2cf71592e8c74cae2b4772f04c70c, type: 3}
+  - Note: 17
+    DisplayName: A#2
+    TargetFrequency: 116.54
+    CurrentFrequency: 116.54
+    Sound: {fileID: 8300000, guid: 14adf89b08eded84899419060b94e68b, type: 3}
+  - Note: 18
+    DisplayName: B2
+    TargetFrequency: 123.47
+    CurrentFrequency: 123.47
+    Sound: {fileID: 8300000, guid: 148f85d6f970b1843b08984451d25ebe, type: 3}
+  - Note: 19
+    DisplayName: C3
+    TargetFrequency: 130.81
+    CurrentFrequency: 130.81
+    Sound: {fileID: 8300000, guid: 035f0fa12cd77bb4cab111b941f2fcf7, type: 3}
+  - Note: 20
+    DisplayName: C#3
+    TargetFrequency: 138.59
+    CurrentFrequency: 138.59
+    Sound: {fileID: 8300000, guid: 6798b9c3ee0217143860a13aa810c020, type: 3}
+  - Note: 21
+    DisplayName: D3
+    TargetFrequency: 146.83
+    CurrentFrequency: 146.83
+    Sound: {fileID: 8300000, guid: 77910dd8b03ccdb48a0bfc5523bfd517, type: 3}
+  - Note: 22
+    DisplayName: D#3
+    TargetFrequency: 155.56
+    CurrentFrequency: 155.56
+    Sound: {fileID: 8300000, guid: ca7efc4b15882a14792ea4a4ce18b7d7, type: 3}
+  - Note: 23
+    DisplayName: E3
+    TargetFrequency: 164.81
+    CurrentFrequency: 164.81
+    Sound: {fileID: 8300000, guid: c8f5d52d6ed2a5547b9d8511058bb87b, type: 3}
+  - Note: 24
+    DisplayName: F3
+    TargetFrequency: 174.61
+    CurrentFrequency: 174.61
+    Sound: {fileID: 8300000, guid: 3fae995d8b03a1a40b5a22b904918ec4, type: 3}
+  - Note: 25
+    DisplayName: F#3
+    TargetFrequency: 185
+    CurrentFrequency: 185
+    Sound: {fileID: 8300000, guid: 81b3001689b002d4f9699aa67342f333, type: 3}
+  - Note: 26
+    DisplayName: G3
+    TargetFrequency: 196
+    CurrentFrequency: 196
+    Sound: {fileID: 8300000, guid: 5835714252635ba45946d20d7c9c7485, type: 3}
+  - Note: 27
+    DisplayName: G#3
+    TargetFrequency: 207.65
+    CurrentFrequency: 207.65
+    Sound: {fileID: 8300000, guid: 64ac94fa505130c4282a182bd3c12a9b, type: 3}
+  - Note: 28
+    DisplayName: A3
+    TargetFrequency: 220
+    CurrentFrequency: 220
+    Sound: {fileID: 8300000, guid: 1e25b3f8a7966b14188d5063584ed115, type: 3}
+  - Note: 29
+    DisplayName: A#3
+    TargetFrequency: 233.08
+    CurrentFrequency: 233.08
+    Sound: {fileID: 8300000, guid: a127e7c0cc95ae74a8f104beb17c0b47, type: 3}
+  - Note: 30
+    DisplayName: B3
+    TargetFrequency: 246.94
+    CurrentFrequency: 246.94
+    Sound: {fileID: 8300000, guid: a76f9e3373c49674ea603f0ce41f8eaa, type: 3}
+  - Note: 31
+    DisplayName: C4
+    TargetFrequency: 261.63
+    CurrentFrequency: 261.63
+    Sound: {fileID: 8300000, guid: 0a4636f9319eac04b92bd6c30e6d2cba, type: 3}
+  - Note: 32
+    DisplayName: C#4
+    TargetFrequency: 277.18
+    CurrentFrequency: 277.18
+    Sound: {fileID: 8300000, guid: 938827df4b80be243b096e539db4dc9a, type: 3}
+  - Note: 33
+    DisplayName: D4
+    TargetFrequency: 293.66
+    CurrentFrequency: 293.66
+    Sound: {fileID: 8300000, guid: c0b058549d1a44c46b87ba75c57a61ab, type: 3}
+  - Note: 34
+    DisplayName: D#4
+    TargetFrequency: 311.13
+    CurrentFrequency: 311.13
+    Sound: {fileID: 8300000, guid: d819d4c960fc4c94c8b032f3e582dc1f, type: 3}
+  - Note: 35
+    DisplayName: E4
+    TargetFrequency: 329.63
+    CurrentFrequency: 329.63
+    Sound: {fileID: 8300000, guid: 9b7b13b7243d52346ad8592bd1c17665, type: 3}
+  - Note: 36
+    DisplayName: F4
+    TargetFrequency: 349.23
+    CurrentFrequency: 349.23
+    Sound: {fileID: 8300000, guid: 829f8f9108a27254bbe17ee9973689b2, type: 3}
+  - Note: 37
+    DisplayName: F#4
+    TargetFrequency: 369.99
+    CurrentFrequency: 369.99
+    Sound: {fileID: 8300000, guid: 1f0cb068bb2b12f4b917bed07534bd42, type: 3}
+  - Note: 38
+    DisplayName: G4
+    TargetFrequency: 392
+    CurrentFrequency: 392
+    Sound: {fileID: 8300000, guid: e3a74b56cd8b17744b7bb6bfd60ae236, type: 3}
+  - Note: 39
+    DisplayName: G#4
+    TargetFrequency: 415.3
+    CurrentFrequency: 415.3
+    Sound: {fileID: 8300000, guid: 623eaadddb73fc54a933a31771227d67, type: 3}
+  - Note: 40
+    DisplayName: A4
+    TargetFrequency: 440
+    CurrentFrequency: 440
+    Sound: {fileID: 8300000, guid: 93b94fb28e4699c48b2c1549c82d549d, type: 3}
+  - Note: 41
+    DisplayName: A#4
+    TargetFrequency: 466.16
+    CurrentFrequency: 466.16
+    Sound: {fileID: 8300000, guid: dafcbffae88d8964fb0487fd7e6b831d, type: 3}
+  - Note: 42
+    DisplayName: B4
+    TargetFrequency: 493.88
+    CurrentFrequency: 493.88
+    Sound: {fileID: 8300000, guid: 76e3109a72d43f44bbbaec244c25b3ab, type: 3}
+  - Note: 43
+    DisplayName: C5
+    TargetFrequency: 523.25
+    CurrentFrequency: 523.25
+    Sound: {fileID: 8300000, guid: 7fba4c1c0ebf5104c997930d46b4d5e9, type: 3}
+  - Note: 44
+    DisplayName: C#5
+    TargetFrequency: 554.37
+    CurrentFrequency: 554.37
+    Sound: {fileID: 8300000, guid: aa79d37d65addbd4792e726fd28afd14, type: 3}
+  - Note: 45
+    DisplayName: D5
+    TargetFrequency: 587.33
+    CurrentFrequency: 587.33
+    Sound: {fileID: 8300000, guid: 39e1afdb57a113a4e91bb061f5c47186, type: 3}
+  - Note: 46
+    DisplayName: D#5
+    TargetFrequency: 622.25
+    CurrentFrequency: 622.25
+    Sound: {fileID: 8300000, guid: e28579492f652a342bbcf76d76f8dda8, type: 3}
+  - Note: 47
+    DisplayName: E5
+    TargetFrequency: 659.26
+    CurrentFrequency: 659.26
+    Sound: {fileID: 8300000, guid: fb7b8246bb2b9224788cfe347f4f01f3, type: 3}
+  - Note: 48
+    DisplayName: F5
+    TargetFrequency: 698.46
+    CurrentFrequency: 698.46
+    Sound: {fileID: 8300000, guid: 26d9d171b59745c439912569b88768dd, type: 3}
+  - Note: 49
+    DisplayName: F#5
+    TargetFrequency: 739.99
+    CurrentFrequency: 739.99
+    Sound: {fileID: 8300000, guid: 3acbde6716be9d241b5812800b7b5eca, type: 3}
+  - Note: 50
+    DisplayName: G5
+    TargetFrequency: 783.99
+    CurrentFrequency: 783.99
+    Sound: {fileID: 8300000, guid: 66166cebc96f8844ba6f802d859c55f4, type: 3}
+  - Note: 51
+    DisplayName: G#5
+    TargetFrequency: 830.61
+    CurrentFrequency: 830.61
+    Sound: {fileID: 8300000, guid: e336f29afa5d2584699069ea501a061e, type: 3}
+  - Note: 52
+    DisplayName: A5
+    TargetFrequency: 880
+    CurrentFrequency: 880
+    Sound: {fileID: 8300000, guid: fc0f56670d6c6f548b720e6431cb41bc, type: 3}
+  - Note: 53
+    DisplayName: A#5
+    TargetFrequency: 932.33
+    CurrentFrequency: 932.33
+    Sound: {fileID: 8300000, guid: 5ac79fd1f33896640a0a312d5ca10de7, type: 3}
+  - Note: 54
+    DisplayName: B5
+    TargetFrequency: 987.77
+    CurrentFrequency: 987.77
+    Sound: {fileID: 8300000, guid: 9002318e8bd5610468ec4ed066698011, type: 3}
+  - Note: 55
+    DisplayName: C6
+    TargetFrequency: 1046.5
+    CurrentFrequency: 1046.5
+    Sound: {fileID: 8300000, guid: 63721a73d7e3c494da548ab78f0c143f, type: 3}
+  - Note: 56
+    DisplayName: C#6
+    TargetFrequency: 1108.73
+    CurrentFrequency: 1108.73
+    Sound: {fileID: 8300000, guid: cbf02a94fa235c84bb3c5943911ad21e, type: 3}
+  - Note: 57
+    DisplayName: D6
+    TargetFrequency: 1174.66
+    CurrentFrequency: 1174.66
+    Sound: {fileID: 8300000, guid: dbd21f693f3bd9a4bbcdc67de405f0cc, type: 3}
+  - Note: 58
+    DisplayName: D#6
+    TargetFrequency: 1244.51
+    CurrentFrequency: 1244.51
+    Sound: {fileID: 8300000, guid: aba15f36a35fee9479d78d72f73c4fb3, type: 3}
+  - Note: 59
+    DisplayName: E6
+    TargetFrequency: 1318.51
+    CurrentFrequency: 1318.51
+    Sound: {fileID: 8300000, guid: 8811524bce48ab948b91551d7e31ee10, type: 3}

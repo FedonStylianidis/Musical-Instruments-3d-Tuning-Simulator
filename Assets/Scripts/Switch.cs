@@ -36,7 +36,7 @@ public class Switch : InteractableObject
 
         flip(State ? Angle_for_On : Angle_for_Off);
 
-        ControlInstrument.GetComponent<Instrument>().updateFeedback_from_PowerController(State);
+       // ControlInstrument.GetComponent<Instrument>().updateFeedback_from_PowerController(State);
 
     }
 
