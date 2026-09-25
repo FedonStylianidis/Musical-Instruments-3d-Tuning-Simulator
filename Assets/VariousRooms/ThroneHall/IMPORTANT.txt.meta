@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 23ceb024d0e28694e930390b84fe0355
+timeCreated: 1511264867
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 114784
+  packageName: Throne Hall (Medieval)
+  packageVersion: 1.1
+  assetPath: Assets/ThroneHall/IMPORTANT.txt
+  uploadId: 289859

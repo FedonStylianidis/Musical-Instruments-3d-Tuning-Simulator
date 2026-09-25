@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 //using UnityEngine.UIElements;
 
@@ -97,6 +98,16 @@ public class EgoController : MonoBehaviour
     public static bool CursorFrozen;
 
 
+    [Header("Pause Menu")]
+    public GameObject StartMenuCanvas;
+
+    private bool PauseMenuOpen = false;
+    private bool CursorWasFrozen;
+    private StartMenu startMenu;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,12 +119,57 @@ public class EgoController : MonoBehaviour
         CursorFrozen = true;
 
         EmbeddedCamera = transform.GetChild(0);
+       
+        
+        
+        // Start rotation from the rotation
+        // already set in the Unity scene.
+        YRotation =
+            transform.eulerAngles.y;
 
-      //  rb = GetComponent<Rigidbody>();
+        xRotation =
+            EmbeddedCamera.localEulerAngles.x;
+
+        //  rb = GetComponent<Rigidbody>();
 
 #if !UNITY_EDITOR
         Cursor.visible = false;
 #endif
+
+        if (!StartMenu.GameHasStarted)
+        {
+            // FIRST LAUNCH:
+            // remember Ego's normal cursor state.
+            CursorWasFrozen =
+                CursorFrozen;
+
+            PauseMenuOpen = true;
+
+            StartMenuCanvas.SetActive(true);
+
+            Time.timeScale = 0f;
+
+            CursorFrozen = false;
+
+            Cursor.visible = true;
+
+            Cursor.lockState =
+                CursorLockMode.None;
+        }
+        else
+        {
+            // RESTART:
+            // GameHasStarted is already true,
+            // so enter gameplay immediately.
+            PauseMenuOpen = false;
+
+            StartMenuCanvas.SetActive(false);
+
+            Time.timeScale = 1f;
+        }
+
+        startMenu =
+    StartMenuCanvas.GetComponent<StartMenu>();
 
     }
 
@@ -250,140 +306,251 @@ public class EgoController : MonoBehaviour
 
 
 
-    // Update is called once per frame
-    void Update()
+    public void startGameplay()
     {
+        PauseMenuOpen = false;
 
-#if UNITY_EDITOR
-        if (Input.GetKeyUp(KeyCode.Space))
-            CursorFrozen = !CursorFrozen;
-#endif
+        StartMenuCanvas.SetActive(false);
+
+        Time.timeScale = 1f;
+
+
+        // Restore the original EgoController
+        // cursor behavior.
+        CursorFrozen =
+            CursorWasFrozen;
+
 
         if (CursorFrozen)
-            //GetCursorPos (out Point CursorPos);
-            //print (CursorPos.X + " , " + CursorPos.Y);
-            SetCursorPos(Screen.width / 2, Screen.height / 2);
-
-
-        if (Mode == Modes.Navigation)
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+            // EgoController itself keeps the mouse
+            // in the centre using SetCursorPos().
+            Cursor.lockState =
+                CursorLockMode.None;
 
-            if (isGrounded && velocity.y < 0)
-            {
-                velocity.y = -2f;
-            }
-            //  if (!Halt)
-            //   {
-
-            move_horizontally = Input.GetAxis("Horizontal");
-            move_vertically = Input.GetAxis("Vertical");
-            //  }
-
-            rotate_horizontally = Input.GetAxis("Mouse X");
-            rotate_vertically = Input.GetAxis("Mouse Y");
-
-
-            Vector3 move = transform.right * move_horizontally + transform.forward * move_vertically;
-            controller.Move(move * speed * Time.deltaTime);
-            //check if the player is on the ground so he can jump
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                //the equation for jumping
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
-
-            velocity.y += gravity * Time.deltaTime;
-
-            controller.Move(velocity * Time.deltaTime);
-            /* if (move_vertically != 0F)
-            {
-
-                rb.MovePosition(transform.position + transform.forward * LinearVerticalSpeed * move_vertically * Time.deltaTime);
-
-                move_vertically = 0F;
-
-            }
-
-            if (move_horizontally != 0F)
-            {
-
-                rb.MovePosition(transform.position + transform.right * LinearHorizontalSpeed * move_horizontally * Time.deltaTime);
-
-                move_horizontally = 0F;
-
-            } */
-
-            if (!MouseUI.Rotating)
-            {
-                float mouseX = rotate_horizontally * mouseSensitivity * Time.deltaTime;
-                float mouseY = rotate_vertically * mouseSensitivity * Time.deltaTime;
-
-                //control rotation around x axis (Look up and down)
-                xRotation -= mouseY;
-
-                //we clamp the rotation so we cant Over-rotate (like in real life)
-                xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-                //control rotation around y axis (Look up and down)
-                YRotation += mouseX;
-
-                //applying both rotations
-                transform.localRotation = Quaternion.Euler(xRotation, YRotation, 0f);
-            }
-    /* if (rotate_vertically != 0F)
-     {
-
-         if (withinVerticalRotationLimits())
-             //we rotate the child Camera, not Ego GameOject
-             EmbeddedCamera.localEulerAngles = new Vector3(EmbeddedCamera.localEulerAngles.x - AngularVerticalSpeed * rotate_vertically * Time.deltaTime, 0F, 0F);
-
-         rotate_vertically = 0F;
-
-     }
-
-     if (rotate_horizontally != 0F)
-     {
-
-         //we rotate Ego GameObject, not the child Camera
-         transform.localEulerAngles = new Vector3(0F, transform.localEulerAngles.y + AngularHorizontalSpeed * rotate_horizontally * Time.deltaTime, 0F);
-
-         rotate_horizontally = 0F;
-
-     }  */
-
- }
-
-        //<- if (Input.GetKeyUp(KeyCode.Escape))
-        //  Application.Quit();
-        if (MouseUI.ObjectBeingCarried != null &&
-            !CursorFrozen)
+#if !UNITY_EDITOR
+        Cursor.visible = false;
+#endif
+        }
+        else
         {
-            MovableObject movable =
-                MouseUI.ObjectBeingCarried
-                    .GetComponent<MovableObject>();
+            Cursor.lockState =
+                CursorLockMode.None;
 
-            if (movable != null)
+            Cursor.visible = true;
+        }
+    }
+
+
+
+
+    public void togglePauseMenu()
+    {
+        if (!PauseMenuOpen)
+        {
+            // Remember whether the cursor was
+            // frozen before opening the menu.
+            CursorWasFrozen =
+                CursorFrozen;
+
+
+            PauseMenuOpen = true;
+
+
+            // Show the complete menu.
+            StartMenuCanvas.SetActive(true);
+
+
+            // Whenever the menu is opened,
+            // make sure we start on the main
+            // menu and NOT Instructions.
+            if (startMenu != null)
             {
-                Camera activeCamera = null;
+                startMenu.hideInstructions();
+            }
 
-                Camera[] cameras = Camera.allCameras;
 
-                foreach (Camera cam in cameras)
-                {
-                    if (cam.enabled &&
-                        cam.gameObject.activeInHierarchy)
-                    {
-                        activeCamera = cam;
-                        break;
-                    }
-                }
+            // Pause gameplay.
+            Time.timeScale = 0f;
 
-                movable.followMouse(activeCamera);
+
+            // Free the mouse for the UI.
+            CursorFrozen = false;
+
+            Cursor.lockState =
+                CursorLockMode.None;
+
+            Cursor.visible = true;
+        }
+        else
+        {
+            startGameplay();
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+        {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // If we are already in the pause menu
+            // and Instructions are showing,
+            // ESC closes only Instructions.
+            if (PauseMenuOpen &&
+                startMenu != null &&
+                startMenu.instructionsAreOpen())
+            {
+                startMenu.hideInstructions();
+            }
+
+            // Otherwise ESC opens/closes
+            // the complete pause menu.
+            else
+            {
+                togglePauseMenu();
             }
         }
 
-    }
+
+        if (PauseMenuOpen)
+        {
+            return;
+        }
+
+
+
+
+#if UNITY_EDITOR
+        if (Input.GetKeyUp(KeyCode.Space))
+                CursorFrozen = !CursorFrozen;
+#endif
+
+            if (CursorFrozen)
+                //GetCursorPos (out Point CursorPos);
+                //print (CursorPos.X + " , " + CursorPos.Y);
+                SetCursorPos(Screen.width / 2, Screen.height / 2);
+
+
+            if (Mode == Modes.Navigation)
+            {
+                isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+                if (isGrounded && velocity.y < 0)
+                {
+                    velocity.y = -2f;
+                }
+                //  if (!Halt)
+                //   {
+
+                move_horizontally = Input.GetAxis("Horizontal");
+                move_vertically = Input.GetAxis("Vertical");
+                //  }
+
+                rotate_horizontally = Input.GetAxis("Mouse X");
+                rotate_vertically = Input.GetAxis("Mouse Y");
+
+
+                Vector3 move = transform.right * move_horizontally + transform.forward * move_vertically;
+                controller.Move(move * speed * Time.deltaTime);
+                //check if the player is on the ground so he can jump
+                if (Input.GetButtonDown("Jump") && isGrounded)
+                {
+                    //the equation for jumping
+                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                }
+
+                velocity.y += gravity * Time.deltaTime;
+
+                controller.Move(velocity * Time.deltaTime);
+                /* if (move_vertically != 0F)
+                {
+
+                    rb.MovePosition(transform.position + transform.forward * LinearVerticalSpeed * move_vertically * Time.deltaTime);
+
+                    move_vertically = 0F;
+
+                }
+
+                if (move_horizontally != 0F)
+                {
+
+                    rb.MovePosition(transform.position + transform.right * LinearHorizontalSpeed * move_horizontally * Time.deltaTime);
+
+                    move_horizontally = 0F;
+
+                } */
+
+                if (!MouseUI.Rotating)
+                {
+                    float mouseX = rotate_horizontally * mouseSensitivity * Time.deltaTime;
+                    float mouseY = rotate_vertically * mouseSensitivity * Time.deltaTime;
+
+                    //control rotation around x axis (Look up and down)
+                    xRotation -= mouseY;
+
+                    //we clamp the rotation so we cant Over-rotate (like in real life)
+                    xRotation = Mathf.Clamp(xRotation, -45f, 45f);
+
+                    //control rotation around y axis (Look up and down)
+                    YRotation += mouseX;
+
+                    //applying both rotations
+                    transform.localRotation = Quaternion.Euler(xRotation, YRotation, 0f);
+                }
+                /* if (rotate_vertically != 0F)
+                 {
+
+                     if (withinVerticalRotationLimits())
+                         //we rotate the child Camera, not Ego GameOject
+                         EmbeddedCamera.localEulerAngles = new Vector3(EmbeddedCamera.localEulerAngles.x - AngularVerticalSpeed * rotate_vertically * Time.deltaTime, 0F, 0F);
+
+                     rotate_vertically = 0F;
+
+                 }
+
+                 if (rotate_horizontally != 0F)
+                 {
+
+                     //we rotate Ego GameObject, not the child Camera
+                     transform.localEulerAngles = new Vector3(0F, transform.localEulerAngles.y + AngularHorizontalSpeed * rotate_horizontally * Time.deltaTime, 0F);
+
+                     rotate_horizontally = 0F;
+
+                 }  */
+
+            }
+
+            //<- if (Input.GetKeyUp(KeyCode.Escape))
+            //  Application.Quit();
+            if (MouseUI.ObjectBeingCarried != null &&
+         !CursorFrozen)
+            {
+                MovableObject movable =
+                    MouseUI.ObjectBeingCarried
+                        .GetComponent<MovableObject>();
+
+                if (movable != null)
+                {
+                    Camera activeCamera = null;
+
+                    Camera[] cameras = Camera.allCameras;
+
+                    foreach (Camera cam in cameras)
+                    {
+                        if (cam.enabled &&
+                            cam.gameObject.activeInHierarchy)
+                        {
+                            activeCamera = cam;
+                            break;
+                        }
+                    }
+
+                    movable.followMouse(activeCamera);
+                }
+            }
+
+        }
+    
 
 
     /*  bool withinVerticalRotationLimits()
@@ -467,6 +634,7 @@ public class EgoController : MonoBehaviour
             .GetComponent<MovableObject>()
             .setCarryingPose();
     } */
+    
     public void attach(GameObject _object)
     {
         Camera activeCamera = getActiveCamera();
@@ -477,11 +645,16 @@ public class EgoController : MonoBehaviour
             return;
         }
 
-        _object.transform.SetParent(activeCamera.transform);
+     //   _object.transform.SetParent(activeCamera.transform);
+       _object.transform.SetParent( activeCamera.transform, true);
 
-        _object.GetComponent<MovableObject>().setCarryingPose();
+       _object.GetComponent<MovableObject>().setCarryingPose();
+
+
     }
 
+
+   
     private Camera getActiveCamera()
     {
         Camera[] cameras = Camera.allCameras;

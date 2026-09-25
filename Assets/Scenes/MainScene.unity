@@ -984,7 +984,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -19101,6 +19101,7 @@ Transform:
   - {fileID: 3242988004097594163}
   - {fileID: 3719623374880456606}
   - {fileID: 4859996774133536213}
+  - {fileID: 7192537777979051602}
   - {fileID: 5022980804880462511}
   - {fileID: 5387266096170303466}
   - {fileID: 2271076288539194140}
@@ -31451,11 +31452,11 @@ Transform:
   m_GameObject: {fileID: 9017588111203648406}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.601532, y: 1.403678, z: 9.593748}
-  m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_LocalPosition: {x: -12.964504, y: 93.578545, z: 56.827232}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4613355618200644382}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7198071264580812972
 Transform:
@@ -46529,4 +46530,3 @@ SceneRoots:
   - {fileID: 1518946527}
   - {fileID: 1660797523}
   - {fileID: 322031016}
-  - {fileID: 7192537777979051602}

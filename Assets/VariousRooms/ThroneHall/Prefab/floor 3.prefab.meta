@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9a076ca3e0653ab41af2a1d75c98c890
+timeCreated: 1521237543
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 114784
+  packageName: Throne Hall (Medieval)
+  packageVersion: 1.1
+  assetPath: Assets/ThroneHall/Prefab/floor 3.prefab
+  uploadId: 289859

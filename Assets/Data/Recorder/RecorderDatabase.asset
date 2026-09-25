@@ -1,0 +1,215 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f709967541a8810429876c0ad712cc3b, type: 3}
+  m_Name: RecorderDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::RecorderDatabase
+  Notes:
+  - Note: 0
+    Frequency: 261.63
+    Fingerings:
+    - CoveredHoles: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 7020a7813a54d0143b499ac543124264, type: 3}
+  - Note: 1
+    Frequency: 277.18
+    Fingerings:
+    - CoveredHoles: 01000000020000000300000004000000050000000600000007000000080000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 16a3e4ece7786aa4ab7646ffd75da501, type: 3}
+  - Note: 2
+    Frequency: 293.66
+    Fingerings:
+    - CoveredHoles: 010000000200000003000000040000000500000006000000080000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 7d641bcb36db99c42b5de5d3854d561a, type: 3}
+  - Note: 3
+    Frequency: 311.13
+    Fingerings:
+    - CoveredHoles: 0100000002000000030000000400000005000000060000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: aeee56b18d534294bb5718645646cbfe, type: 3}
+  - Note: 4
+    Frequency: 329.63
+    Fingerings:
+    - CoveredHoles: 01000000020000000300000004000000050000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: b7a08e4e25483e945b978fb870d1e248, type: 3}
+  - Note: 5
+    Frequency: 349.23
+    Fingerings:
+    - CoveredHoles: 01000000020000000300000004000000060000000700000008000000090000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: eacd0a5e11c6f6448a9429005be17ed5, type: 3}
+  - Note: 6
+    Frequency: 369.99
+    Fingerings:
+    - CoveredHoles: 0100000002000000030000000500000006000000080000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 4cc3049ae9653774384581a68c1b3681, type: 3}
+  - Note: 7
+    Frequency: 392
+    Fingerings:
+    - CoveredHoles: 0100000002000000030000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 441a4f2b19cdb804c905b08d8b56f4cf, type: 3}
+  - Note: 8
+    Frequency: 415.3
+    Fingerings:
+    - CoveredHoles: 0100000002000000040000000500000006000000080000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: ba560bef82560a74985ac0cbe251ddb2, type: 3}
+  - Note: 9
+    Frequency: 440
+    Fingerings:
+    - CoveredHoles: 01000000020000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 517b61133d9d3d7419a1e5f5932334f0, type: 3}
+  - Note: 10
+    Frequency: 466.16
+    Fingerings:
+    - CoveredHoles: 0100000003000000040000000a000000
+      BackHoleHalfCovered: 0
+    - CoveredHoles: 0200000003000000040000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 729f91e97bb69ae45866f4a8a00da9a4, type: 3}
+  - Note: 11
+    Frequency: 493.88
+    Fingerings:
+    - CoveredHoles: 010000000a000000
+      BackHoleHalfCovered: 0
+    - CoveredHoles: 02000000030000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 764bd42ae594b8645a238ec332097256, type: 3}
+  - Note: 12
+    Frequency: 523.25
+    Fingerings:
+    - CoveredHoles: 020000000a000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 5362468755e5c97458b69857794dae9e, type: 3}
+  - Note: 13
+    Frequency: 554.37
+    Fingerings:
+    - CoveredHoles: 0100000002000000
+      BackHoleHalfCovered: 0
+    - CoveredHoles: 010000000300000004000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: d47342903b5e6ab4e9599645eacacb53, type: 3}
+  - Note: 14
+    Frequency: 587.33
+    Fingerings:
+    - CoveredHoles: 02000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 2168d7021e0840647bed28443bdb00e4, type: 3}
+  - Note: 15
+    Frequency: 622.25
+    Fingerings:
+    - CoveredHoles: 020000000300000004000000050000000600000008000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: 4dc1bfdde15f2c741944ae4bb8fa3db4, type: 3}
+  - Note: 16
+    Frequency: 659.26
+    Fingerings:
+    - CoveredHoles: 0100000002000000030000000400000005000000
+      BackHoleHalfCovered: 1
+    - CoveredHoles: 02000000030000000400000005000000
+      BackHoleHalfCovered: 0
+    Sound: {fileID: 8300000, guid: cb3971a4e054e2d429ee7e32eae63a44, type: 3}
+  - Note: 17
+    Frequency: 698.46
+    Fingerings:
+    - CoveredHoles: 010000000200000003000000040000000600000008000000
+      BackHoleHalfCovered: 1
+    Sound: {fileID: 8300000, guid: 844533375d639704eb38cf846182643c, type: 3}
+  - Note: 18
+    Frequency: 739.99
+    Fingerings:
+    - CoveredHoles: 010000000200000003000000050000000700000009000000
+      BackHoleHalfCovered: 1
+    - CoveredHoles: 01000000020000000300000006000000
+      BackHoleHalfCovered: 1
+    Sound: {fileID: 8300000, guid: 4216b7a00bb45d84586675f404f6483d, type: 3}
+  - Note: 19
+    Frequency: 783.99
+    Fingerings:
+    - CoveredHoles: 010000000200000003000000
+      BackHoleHalfCovered: 1
+    Sound: {fileID: 8300000, guid: 9248d6963d8cc0348953082fbe1066cc, type: 3}
+  - Note: 20
+    Frequency: 830.61
+    Fingerings:
+    - CoveredHoles: 010000000200000004000000
+      BackHoleHalfCovered: 1
+    Sound: {fileID: 8300000, guid: 69a5f2ddfa0cbea48a2028a79abe6780, type: 3}
+  - Note: 21
+    Frequency: 880
+    Fingerings:
+    - CoveredHoles: 0100000002000000
+      BackHoleHalfCovered: 1
+    Sound: {fileID: 8300000, guid: 009cf196ff5a8704ba5c2502214b92a4, type: 3}
+  - Note: 22
+    Frequency: 932.33
+    Fingerings:
+    - CoveredHoles: 010000000200000004000000050000000600000008000000
+      BackHoleHalfCovered: 1
+    Sound: {fileID: 8300000, guid: 6819316a77310e24daa51177db9fef20, type: 3}
+  - Note: 23
+    Frequency: 987.77
+    Fingerings:
+    - CoveredHoles: 01000000020000000400000005000000
+      BackHoleHalfCovered: 1
+    Sound: {fileID: 8300000, guid: eb213119dfb06d748af71c8da0a13b17, type: 3}
+  - Note: 24
+    Frequency: 1046.5
+    Fingerings:
+    - CoveredHoles: 010000000400000005000000
+      BackHoleHalfCovered: 1
+    Sound: {fileID: 8300000, guid: 9247694a641234940a82924cad99c78c, type: 3}
+  - Note: 25
+    Frequency: 1108.73
+    Fingerings:
+    - CoveredHoles: 010000000300000004000000050000000700000009000000
+      BackHoleHalfCovered: 1
+    Sound: {fileID: 8300000, guid: e7d269663b3a28d4084bbaed92752e67, type: 3}
+  - Note: 26
+    Frequency: 1174.66
+    Fingerings:
+    - CoveredHoles: 01000000030000000400000006000000070000000800000009000000
+      BackHoleHalfCovered: 1
+    Sound: {fileID: 8300000, guid: ce26af1218034d345a83c30b62007567, type: 3}
+  Sounds:
+  - {fileID: 8300000, guid: 7020a7813a54d0143b499ac543124264, type: 3}
+  - {fileID: 8300000, guid: 16a3e4ece7786aa4ab7646ffd75da501, type: 3}
+  - {fileID: 8300000, guid: 7d641bcb36db99c42b5de5d3854d561a, type: 3}
+  - {fileID: 8300000, guid: aeee56b18d534294bb5718645646cbfe, type: 3}
+  - {fileID: 8300000, guid: b7a08e4e25483e945b978fb870d1e248, type: 3}
+  - {fileID: 8300000, guid: eacd0a5e11c6f6448a9429005be17ed5, type: 3}
+  - {fileID: 8300000, guid: 4cc3049ae9653774384581a68c1b3681, type: 3}
+  - {fileID: 8300000, guid: 441a4f2b19cdb804c905b08d8b56f4cf, type: 3}
+  - {fileID: 8300000, guid: ba560bef82560a74985ac0cbe251ddb2, type: 3}
+  - {fileID: 8300000, guid: 517b61133d9d3d7419a1e5f5932334f0, type: 3}
+  - {fileID: 8300000, guid: 729f91e97bb69ae45866f4a8a00da9a4, type: 3}
+  - {fileID: 8300000, guid: 764bd42ae594b8645a238ec332097256, type: 3}
+  - {fileID: 8300000, guid: 5362468755e5c97458b69857794dae9e, type: 3}
+  - {fileID: 8300000, guid: d47342903b5e6ab4e9599645eacacb53, type: 3}
+  - {fileID: 8300000, guid: 2168d7021e0840647bed28443bdb00e4, type: 3}
+  - {fileID: 8300000, guid: 4dc1bfdde15f2c741944ae4bb8fa3db4, type: 3}
+  - {fileID: 8300000, guid: cb3971a4e054e2d429ee7e32eae63a44, type: 3}
+  - {fileID: 8300000, guid: 844533375d639704eb38cf846182643c, type: 3}
+  - {fileID: 8300000, guid: 4216b7a00bb45d84586675f404f6483d, type: 3}
+  - {fileID: 8300000, guid: 9248d6963d8cc0348953082fbe1066cc, type: 3}
+  - {fileID: 8300000, guid: 69a5f2ddfa0cbea48a2028a79abe6780, type: 3}
+  - {fileID: 8300000, guid: 009cf196ff5a8704ba5c2502214b92a4, type: 3}
+  - {fileID: 8300000, guid: 6819316a77310e24daa51177db9fef20, type: 3}
+  - {fileID: 8300000, guid: eb213119dfb06d748af71c8da0a13b17, type: 3}
+  - {fileID: 8300000, guid: 9247694a641234940a82924cad99c78c, type: 3}
+  - {fileID: 8300000, guid: e7d269663b3a28d4084bbaed92752e67, type: 3}
+  - {fileID: 8300000, guid: ce26af1218034d345a83c30b62007567, type: 3}

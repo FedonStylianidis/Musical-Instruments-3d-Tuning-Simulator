@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d35201dea40a0e547ae315a4120a0798
+timeCreated: 1521221366
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 114784
+  packageName: Throne Hall (Medieval)
+  packageVersion: 1.1
+  assetPath: Assets/ThroneHall/Materials/MedTiles 1.mat
+  uploadId: 289859

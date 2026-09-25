@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2bd73989eed90274f89e5fd847dc8db1
+timeCreated: 1521672838
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 114784
+  packageName: Throne Hall (Medieval)
+  packageVersion: 1.1
+  assetPath: Assets/ThroneHall/Prefab/door.prefab
+  uploadId: 289859

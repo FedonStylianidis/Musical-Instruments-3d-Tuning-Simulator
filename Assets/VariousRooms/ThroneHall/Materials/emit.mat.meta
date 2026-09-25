@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b1dea417d860d314380f07cdc38a3f42
+timeCreated: 1521286707
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 114784
+  packageName: Throne Hall (Medieval)
+  packageVersion: 1.1
+  assetPath: Assets/ThroneHall/Materials/emit.mat
+  uploadId: 289859

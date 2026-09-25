@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2d7c8b8cf157902448bc540e138467ba
+timeCreated: 1521661424
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 114784
+  packageName: Throne Hall (Medieval)
+  packageVersion: 1.1
+  assetPath: Assets/ThroneHall/Materials/throne_Albedo.mat
+  uploadId: 289859

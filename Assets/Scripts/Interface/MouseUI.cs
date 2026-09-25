@@ -34,9 +34,17 @@ public enum Labels
     ImmersionOil,
     ImmersionOilCap,
     HarpsichordKey,
+    HarpsichordDummyKey,
     HarpsichordTuningPanel,
     HarpsichordRegulatorPin,
-    HarpsichordTuningHammer
+    HarpsichordTuningHammer,
+    Recorder,
+    RecorderHole,
+    RecorderMouthpiece,
+    SnareDrumTuningPanel,
+    SnareDrumLug,
+    SnareDrumSlice,
+    SnareDrumTuningKey
 }
 
 
@@ -82,9 +90,9 @@ public class MouseUI : MonoBehaviour
 
     static GameObject Ego;
 
-    static Texture2D WedgeCursor, FingerCursor, HandCursor, GrabCursor, PressingFingerCursor, EyeCursor,SpinArrowCursor;
+    static Texture2D WedgeCursor, FingerCursor, HandCursor, GrabCursor, PressingFingerCursor, EyeCursor, SpinArrowCursor;
 
-    static int Wedge = 0;
+    public static int Wedge = 0;
     static int Finger = 1;
     static int ClickingFinger = 2;
     static int Hand = 3;
@@ -157,7 +165,7 @@ public class MouseUI : MonoBehaviour
             if (mouseUI.Label != Labels.NonInteractable)
             {
                 showAttributes(mouseUI);
-               // assignBooleanValues(mouseUI);
+                // assignBooleanValues(mouseUI);
             }
 
             if (mouseUI.Movable)
@@ -218,8 +226,8 @@ public class MouseUI : MonoBehaviour
         HandCursor = Resources.Load("hand") as Texture2D;
         GrabCursor = Resources.Load("grab") as Texture2D;
         EyeCursor = Resources.Load("eye") as Texture2D;
-        SpinArrowCursor=Resources.Load("spin_arrow") as Texture2D;
-        
+        SpinArrowCursor = Resources.Load("spin_arrow") as Texture2D;
+
 
         Cursors = new List<GameCursor>();
 
@@ -272,7 +280,7 @@ public class MouseUI : MonoBehaviour
 
 
 
-    static void switchCursor(int _CursorID)
+    public static void switchCursor(int _CursorID)
     {
 
         CurrentCursor = _CursorID;
@@ -280,12 +288,12 @@ public class MouseUI : MonoBehaviour
         Cursor.visible = true;
 
         Cursor.SetCursor(Cursors[CurrentCursor].Shape,
-                         Cursors[CurrentCursor].Offset, 
+                         Cursors[CurrentCursor].Offset,
                          CursorMode.Auto);
 
     }
 
-    static void hideCursor()
+    public static void hideCursor()
     {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         Cursor.visible = false;
@@ -307,7 +315,7 @@ public class MouseUI : MonoBehaviour
 
         return null;
     }
-    
+
     public static void callOnGUI()
     {
 
@@ -333,8 +341,8 @@ public class MouseUI : MonoBehaviour
 
     static void DisplayFakeCursor()
     {
-       if (!UsingTwoObjectsTogether &&
-    !(ObjectBeingCarried != null && ObjectHoveringOver == null))
+        if (!UsingTwoObjectsTogether &&
+     !(ObjectBeingCarried != null && ObjectHoveringOver == null))
             GUI.DrawTexture(new Rect(Screen.width / 2 - Cursors[CurrentCursor].Offset.x,
                 Screen.height / 2 - Cursors[CurrentCursor].Offset.y, 32, 32),
                 Cursors[CurrentCursor].Shape);
@@ -369,7 +377,7 @@ public class MouseUI : MonoBehaviour
 
     void OnMouseOver()
     {
-        
+
 
         if (Label != Labels.NonInteractable && !TemporarilyInaccessible && (!Movable ||
             EgoController.PermittingCollection_of_Objects[Ego.GetComponent<EgoController>().Mode])) //SET THE PARENTHESES FOR !MOVABLE OFF  IF VISIBILITY IS WANTED EVEN IF NOT COLLECTING
@@ -419,7 +427,7 @@ public class MouseUI : MonoBehaviour
                             key.getHarpsichord().ShowDemoButton();
                     }   */
                     //  Debug.Log(gameObject.name + " Pressable=" + Pressable); // checks which keys are pressable
-                   
+
                 }
                 else if (Receptable && ObjectBeingCarried != null)
                     //cursor is already grab in this case // not anymore
@@ -463,13 +471,13 @@ public class MouseUI : MonoBehaviour
                 hideCursor();  //so the grab doesn't appear when holding an object after leaving an interactable object
 
         }
-       /* if (Label == Labels.HarpsichordKey)     //to hide the demo button when exiting A2 key
-        {
-            HarpsichordKey key = GetComponent<HarpsichordKey>();
+        /* if (Label == Labels.HarpsichordKey)     //to hide the demo button when exiting A2 key
+         {
+             HarpsichordKey key = GetComponent<HarpsichordKey>();
 
-            if (key != null && key.Note == HarpsichordNote.A2)
-                key.getHarpsichord().HideDemoButton();
-        } */
+             if (key != null && key.Note == HarpsichordNote.A2)
+                 key.getHarpsichord().HideDemoButton();
+         } */
     }
 
 
@@ -517,13 +525,13 @@ public class MouseUI : MonoBehaviour
             else if (Receptable && ObjectBeingCarried != null)
             {
 
-                switchCursor(Hand);  
+                switchCursor(Hand);
 
             }
 
         }
         //else if (ObjectBeingCarried != null && tag == "Bench" || tag == "DropArea")
-        else if ( ObjectBeingCarried != null && (tag == "Bench" || tag == "DropArea"))
+        else if (ObjectBeingCarried != null && (tag == "Bench" || tag == "ToolsStand" || tag == "DropArea" || tag == "RecorderStand"))
         {
 
             //first ray casted - when mouse is down
@@ -558,17 +566,18 @@ public class MouseUI : MonoBehaviour
 
     void OnMouseDrag()
     {
+     
 
         if (Rotatable && ObjectMouseIsDownOn == gameObject)
-        {//the check whether ObjectMouseIsDownOn has the value of the current gameObject secures that a knob cannot be rotated when Ego is too far away (having the value, means that it has gone through OnMouseOver which filters out the interaction with long distant interactable objects)
+         {//the check whether ObjectMouseIsDownOn has the value of the current gameObject secures that a knob cannot be rotated when Ego is too far away (having the value, means that it has gone through OnMouseOver which filters out the interaction with long distant interactable objects)
 
-            Rotating = true;
+             Rotating = true;
 
-            float mouse_dx = Input.GetAxis("Mouse X");
-            float mouse_dy = Input.GetAxis("Mouse Y");
+             float mouse_dx = Input.GetAxis("Mouse X");
+             float mouse_dy = Input.GetAxis("Mouse Y");
 
-            if (mouse_dx != 0F || mouse_dy != 0F)
-                GetComponent<InteractableObject>().rotate(new Vector2(mouse_dx, -mouse_dy));
+             if (mouse_dx != 0F || mouse_dy != 0F)
+                GetComponent<RotatableObject>().rotate(new Vector2(mouse_dx, -mouse_dy));
 
         }
 
@@ -654,43 +663,197 @@ public class MouseUI : MonoBehaviour
 
         }
         // else if (ObjectBeingCarried != null && tag == "Bench" || tag == "DropArea")
-          else if (ObjectBeingCarried != null &&(tag == "Bench" || tag == "DropArea") )
-        {
+        /* else if (ObjectBeingCarried != null &&(tag == "Bench" || tag == "DropArea") )
+       {
 
-            //second ray casted - when mouse is up
-            // Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            Camera activeCamera = getActiveCamera();
+           //second ray casted - when mouse is up
+           // Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+           Camera activeCamera = getActiveCamera();
+
+           if (activeCamera == null)
+               return;
+
+           Ray ray = activeCamera.ScreenPointToRay(  Input.mousePosition );
+           RaycastHit hit;
+
+           Physics.Raycast(ray, out hit);
+
+           if (MathFunctions.ApproximateProximity_of(RayHitPoint_for_MouseDown, hit.point, 0.1F)
+               && !ObjectBeingCarried.GetComponent<MouseUI>().AreThereObjects_around(hit.point))
+           {
+
+               ObjectBeingCarried.transform.SetParent(null);
+
+               ObjectBeingCarried.GetComponent<MovableObject>().restoreUprightRotation();
+
+               ObjectBeingCarried.transform.position = new Vector3(hit.point.x, hit.point.y + ObjectBeingCarried.GetComponent<MovableObject>().Y_Offset_for_Relocation, hit.point.z);
+
+               //ObjectBeingCarried.GetComponent<MouseUI>().setInteractivity(true);
+               ObjectBeingCarried.GetComponent<MovableObject>().prepareForRelocation();
+
+               ObjectBeingCarried.GetComponent<MouseUI>().Place = gameObject;
+
+               ObjectBeingCarried = null;
+               switchCursor(Wedge); 
+
+           }
+           else
+               //  switchCursor(Grab);
+               hideCursor();
+       } */
+        else if (
+   ObjectBeingCarried != null &&
+   (tag == "Bench" ||
+    tag == "DropArea" ||
+    tag == "ToolsStand" ||
+     tag == "RecorderStand"))
+        {
+            // Second ray cast - when mouse is up.
+            Camera activeCamera =
+                getActiveCamera();
 
             if (activeCamera == null)
                 return;
 
-            Ray ray = activeCamera.ScreenPointToRay(  Input.mousePosition );
+
+            Ray ray =
+                activeCamera.ScreenPointToRay(
+                    Input.mousePosition
+                );
+
             RaycastHit hit;
 
-            Physics.Raycast(ray, out hit);
+            Physics.Raycast(
+                ray,
+                out hit
+            );
 
-            if (MathFunctions.ApproximateProximity_of(RayHitPoint_for_MouseDown, hit.point, 0.1F)
-                && !ObjectBeingCarried.GetComponent<MouseUI>().AreThereObjects_around(hit.point))
+
+            if (MathFunctions.ApproximateProximity_of(
+                    RayHitPoint_for_MouseDown,
+                    hit.point,
+                    0.1F))
             {
 
-                ObjectBeingCarried.transform.SetParent(null);
 
-                ObjectBeingCarried.GetComponent<MovableObject>().restoreUprightRotation();
 
-                ObjectBeingCarried.transform.position = new Vector3(hit.point.x, hit.point.y + ObjectBeingCarried.GetComponent<MovableObject>().Y_Offset_for_Relocation, hit.point.z);
+                // RECORDER STAND
 
-                //ObjectBeingCarried.GetComponent<MouseUI>().setInteractivity(true);
-                ObjectBeingCarried.GetComponent<MovableObject>().prepareForRelocation();
+                if (tag == "RecorderStand")
+                {
+                    if (ObjectBeingCarried.GetComponent<MouseUI>().Label == Labels.Recorder)
+                    {
+                        MovableObject movableObject =
+                            ObjectBeingCarried.GetComponent<MovableObject>();
 
-                ObjectBeingCarried.GetComponent<MouseUI>().Place = gameObject;
+                        if (movableObject != null)
+                        {
+                            movableObject.returnToOriginalRestingPose();
+                        }
 
-                ObjectBeingCarried = null;
-                switchCursor(Wedge); 
+                        ObjectBeingCarried
+                            .GetComponent<MouseUI>()
+                            .Place = gameObject;
 
+                        ObjectBeingCarried = null;
+
+                        switchCursor(Wedge);
+                    }
+                    else
+                    {
+                        hideCursor();
+                    }
+                }
+                // --------------------------------
+                // TOOLS STAND
+                // --------------------------------
+
+                else if (tag == "ToolsStand")
+                {
+                    if (ObjectBeingCarried.GetComponent<MouseUI>().Label != Labels.Recorder)
+                    {
+                        MovableObject movableObject =
+                            ObjectBeingCarried.GetComponent<MovableObject>();
+
+                        if (movableObject != null)
+                        {
+                            movableObject.returnToOriginalRestingPose();
+                        }
+
+                        ObjectBeingCarried
+                            .GetComponent<MouseUI>()
+                            .Place = gameObject;
+
+                        ObjectBeingCarried = null;
+
+                        switchCursor(Wedge);
+                    }
+                    else
+                    {
+                        hideCursor();
+                    }
+                }
+
+
+                // --------------------------------
+                // NORMAL BENCH / DROP AREA
+                // --------------------------------
+
+                else if (
+                            !ObjectBeingCarried
+                                .GetComponent<MouseUI>()
+                                .AreThereObjects_around(
+                                    hit.point
+                                ))
+                        {
+                            ObjectBeingCarried.transform
+                                .SetParent(
+                                    null
+                                );
+
+
+                            ObjectBeingCarried
+                                .GetComponent<MovableObject>()
+                                .restoreUprightRotation();
+
+
+                            ObjectBeingCarried.transform.position =
+                                new Vector3(
+                                    hit.point.x,
+                                    hit.point.y +
+                                    ObjectBeingCarried
+                                        .GetComponent<MovableObject>()
+                                        .Y_Offset_for_Relocation,
+                                    hit.point.z
+                                );
+
+
+                            ObjectBeingCarried
+                                .GetComponent<MovableObject>()
+                                .prepareForRelocation();
+
+
+                            ObjectBeingCarried
+                                .GetComponent<MouseUI>()
+                                .Place =
+                                gameObject;
+
+
+                            ObjectBeingCarried =
+                                null;
+
+
+                            switchCursor(Wedge);
+                        }
+                        else
+                        {
+                            hideCursor();
+                        }
             }
             else
-                //  switchCursor(Grab);
+            {
                 hideCursor();
+            }
         }
 
         ObjectMouseIsDownOn = null;
@@ -873,9 +1036,19 @@ public class MouseUI : MonoBehaviour
         {Labels.ImmersionOil, new OrdinaryNames ("IMMERSION OIL", "ΚΕΔΡΕΛΑΙΟ")},
         {Labels.ImmersionOilCap, new OrdinaryNames ("CAP", "ΚΑΠΑΚΙ")},
         {Labels.HarpsichordKey, new OrdinaryNames ("KEY","ΠΛΗΚΤΡΟ") },    //!Harpsichord key change!
+        {Labels.HarpsichordDummyKey, new OrdinaryNames("DUMMY KEY", "ΑΝΕΝΕΡΓΟ ΠΛΗΚΤΡΟ")},
         {Labels.HarpsichordTuningPanel, new OrdinaryNames("TUNING AREA", "ΠΕΡΙΟΧΗ ΚΟΥΡΔΙΣΜΑΤΟΣ")},
         {Labels.HarpsichordRegulatorPin, new OrdinaryNames("REGULATOR PIN", "ΠΕΙΡΟΣ ΚΟΥΡΔΙΣΜΑΤΟΣ")},
-        {Labels.HarpsichordTuningHammer, new OrdinaryNames("TUNING HAMMER", "ΚΛΕΙΔΙ ΚΟΥΡΔΙΣΜΑΤΟΣ")}
+        {Labels.HarpsichordTuningHammer, new OrdinaryNames("TUNING HAMMER", "ΚΛΕΙΔΙ ΚΟΥΡΔΙΣΜΑΤΟΣ")},
+        {Labels.Recorder, new OrdinaryNames("RECORDER", "ΦΛΟΓΕΡΑ")},
+        {Labels.RecorderHole, new OrdinaryNames("RECORDER HOLE", "ΟΠΗ ΦΛΟΓΕΡΑΣ")},
+        {Labels.RecorderMouthpiece, new OrdinaryNames("RECORDER MOUTHPIECE", "ΕΠΙΣΤΟΜΙΟ ΦΛΟΓΕΡΑΣ" )},
+        {Labels.SnareDrumTuningPanel,new OrdinaryNames( "SNARE DRUM", "ΤΑΜΠΟΥΡΟ") },
+        {Labels.SnareDrumLug,new OrdinaryNames("SNARE LUG","ΒΙΔΑ ΣΥΣΦΙΞΗΣ")},
+        {Labels.SnareDrumSlice, new OrdinaryNames( "SNARE MEMBRANE PART", "ΤΜΗΜΑ ΜΕΜΒΡΑΝΗΣ ΤΑΜΠΟΥΡΟΥ")},
+        {Labels.SnareDrumTuningKey, new OrdinaryNames( "SNARE DRUM TUNING KEY", "ΚΛΕΙΔΙ ΧΟΡΔΙΣΜΑΤΟΣ ΤΑΜΠΟΥΡΟΥ")
+},
+
 
     };
 
@@ -904,10 +1077,18 @@ public class MouseUI : MonoBehaviour
         {Labels.ImmersionOil, new List<bool> {false,false,false,true,true}},
         {Labels.ImmersionOilCap, new List<bool> {false,false,false,true,false}},
         {Labels.HarpsichordKey, new List<bool>{false,true,false,false,false }},   //!Harpsichord Key change
+        {Labels.HarpsichordDummyKey, new List<bool>{false,true,false,false,false}},
         {Labels.HarpsichordTuningPanel, new List<bool>{true,false,false,false,false}},
         {Labels.HarpsichordRegulatorPin, new List<bool>{false,false,false,false,true}},
         {Labels.HarpsichordTuningHammer, new List<bool>{false,false,false,true,false}},
-    };
+        {Labels.Recorder, new List<bool>{false,false,false,true,false}},
+        {Labels.RecorderHole, new List<bool>{false,true,false,false,false}},
+        {Labels.RecorderMouthpiece, new List<bool>{false,true,false,false,false}},
+        {Labels.SnareDrumTuningPanel,new List<bool>{true, false, false, false, false}},
+        {Labels.SnareDrumLug,new List<bool>{false, false, false, false, true}},
+        {Labels.SnareDrumSlice,new List<bool>{false, true, false, false, false}},
+        {Labels.SnareDrumTuningKey,new List<bool>{false, false, false, true, false}},
+        };
 
 
 }

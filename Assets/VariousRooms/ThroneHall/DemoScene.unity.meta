@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 93956b389589b4a499f37f6a25d9c0f3
+labels:
+- castle
+- hall
+- interior
+- medieval
+- pbr
+- throne
+- vr
+timeCreated: 1521236560
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 114784
+  packageName: Throne Hall (Medieval)
+  packageVersion: 1.1
+  assetPath: Assets/ThroneHall/DemoScene.unity
+  uploadId: 289859
