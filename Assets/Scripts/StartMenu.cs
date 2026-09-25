@@ -38,13 +38,8 @@ public class StartMenu : MonoBehaviour
             EgoController ego =
                 FindFirstObjectByType<EgoController>();
 
-
-            if (ego != null)
-            {
                 ego.startGameplay();
-            }
-
-
+            
             return;
         }
 

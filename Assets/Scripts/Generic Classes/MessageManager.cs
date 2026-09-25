@@ -15,9 +15,7 @@ public class MessageManager : MonoBehaviour
         GameObject message,
         float duration)
     {
-        if (message == null)
-            return;
-
+       
         StartCoroutine(
             showMessageForDuration(
                 message,
@@ -33,9 +31,6 @@ public class MessageManager : MonoBehaviour
         GameObject message,
         float duration)
     {
-        if (message == null)
-            return;
-
         // If this message was already shown, do nothing.
         if (MessagesAlreadyShown.Contains(message))
             return;
@@ -68,9 +63,6 @@ public class MessageManager : MonoBehaviour
     // Shows a message without automatically hiding it.
     public void showMessage(GameObject message)
     {
-        if (message == null)
-            return;
-
         message.SetActive(true);
     }
 
@@ -78,9 +70,6 @@ public class MessageManager : MonoBehaviour
     // Hides a message.
     public void hideMessage(GameObject message)
     {
-        if (message == null)
-            return;
-
         message.SetActive(false);
     }
 }

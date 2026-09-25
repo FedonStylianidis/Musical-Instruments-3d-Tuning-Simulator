@@ -28,8 +28,6 @@ public class KeyData
 
     public float TargetFrequency;
 
-    public float CurrentFrequency;
-
     public AudioClip Sound;
 }
 

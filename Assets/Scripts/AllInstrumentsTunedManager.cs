@@ -12,10 +12,13 @@ public class AllInstrumentsTunedManager : MonoBehaviour
     private bool RecorderTuned;
     private bool SnareDrumTuned;
 
-    private bool FinaleStarted = false;
+    private bool FinaleStarted;
 
     private EgoController Ego;
 
+    private Harpsichord Harpsichord;
+    private Recorder Recorder;
+    private SnareDrum SnareDrum;
 
     void Start()
     {
@@ -23,7 +26,14 @@ public class AllInstrumentsTunedManager : MonoBehaviour
 
         Ego = GameObject.Find("Ego")
             .GetComponent<EgoController>();
+        Harpsichord =
+    FindFirstObjectByType<Harpsichord>();
 
+        Recorder =
+            FindFirstObjectByType<Recorder>();
+
+        SnareDrum =
+            FindFirstObjectByType<SnareDrum>();
 
     }
 
@@ -53,20 +63,17 @@ public class AllInstrumentsTunedManager : MonoBehaviour
         yield return new WaitForSeconds(
             DemoDelay
         );
-        FindFirstObjectByType<SnareDrum>()
-           .PlaySnareDemo();
+
+        SnareDrum.PlaySnareDemo();
+
         yield return new WaitForSeconds(
-           1.2f
-       );
+            1.2f
+        );
 
-        FindFirstObjectByType<Harpsichord>()
-            .PlayToccataDemo();
+        Harpsichord.PlayToccataDemo();
 
-        FindFirstObjectByType<Recorder>()
-            .PlayRecorderDemo();
-
+        Recorder.PlayRecorderDemo();
     }
-
 
     public void harpsichordCompleted()
     {

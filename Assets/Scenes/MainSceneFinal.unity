@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 22
+  Label: 7
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -3837,7 +3837,6 @@ MonoBehaviour:
   speed: 3
   mouseSensitivity: 100
   gravity: -19.62
-  jumpHeight: 3
   groundCheck: {fileID: 1622450484}
   groundDistance: 0.4
   groundMask:
@@ -3845,10 +3844,6 @@ MonoBehaviour:
     m_Bits: 64
   Mode: 0
   InstrumentOnFocus: {fileID: 0}
-  Saved_X_position: 0
-  Saved_Z_position: 0
-  Saved_Y_angle: 0
-  Saved_Camera_X_Angle: 0
   StartMenuCanvas: {fileID: 2100401005}
 --- !u!1 &665882326
 GameObject:
@@ -3919,7 +3914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 22
+  Label: 7
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -4029,7 +4024,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.22, y: 41.54, z: 22}
-  m_LocalScale: {x: 158.88599, y: 112, z: 250}
+  m_LocalScale: {x: 158.88599, y: 112, z: 228.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4613355618200644382}
@@ -4053,8 +4048,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.4232507, y: 0.99999976, z: 1.0114945}
-  m_Center: {x: -0.013927284, y: 0, z: 0.0057462244}
+  m_Size: {x: 1.4232506, y: 0.99999934, z: 1.0098392}
+  m_Center: {x: -0.013927263, y: -4.7001594e-11, z: 0.004918142}
 --- !u!1 &679338603
 GameObject:
   m_ObjectHideFlags: 0
@@ -6061,7 +6056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 22
+  Label: 7
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -6293,7 +6288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 22
+  Label: 7
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -6702,7 +6697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 22
+  Label: 7
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -7369,7 +7364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 22
+  Label: 7
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -9838,7 +9833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 22
+  Label: 7
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -10320,7 +10315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 22
+  Label: 7
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -10874,7 +10869,6 @@ MonoBehaviour:
   MouseCarryDistance: 0.05
   MouseCarryOffset: {x: 0, y: 0}
   AttachedToReceptor: 0
-  OriginalWorldRotation: {x: 0, y: 0, z: 0, w: 0}
   AttachedLug: {fileID: 0}
   LugAttachmentRotation: {x: 0, y: 0, z: 0}
   LugAttachmentScale: {x: 1, y: 1, z: 1}
@@ -10890,7 +10884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 27
+  Label: 12
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -11111,7 +11105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 22
+  Label: 7
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -11805,7 +11799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 23
+  Label: 8
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -12766,7 +12760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 22
+  Label: 7
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -20173,7 +20167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 21
+  Label: 6
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -20195,15 +20189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Recorder
   MainCamera: {fileID: 1036088655}
   FocusCamera: {fileID: 1479027596}
-  ControlPanel: {fileID: 0}
   ControlExtraUI: {fileID: 0}
-  Location: {fileID: 0}
   Focus_Mode: 0
-  Focus_PosX_Offset: 0
-  Focus_PosZ_Offset: 0
-  Focus_Camera_RotX: 0
-  Focus_Field_of_View: 0
-  Focus_Theta: 0
   View: 0
   RecorderPickupMessage: {fileID: 768037899}
   RecorderInstructionMessage: {fileID: 2144889320}
@@ -20282,7 +20269,6 @@ MonoBehaviour:
   MouseCarryDistance: 0.003
   MouseCarryOffset: {x: 0, y: 0}
   AttachedToReceptor: 0
-  OriginalWorldRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!82 &919132148708804324
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20412,15 +20398,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SnareDrum
   MainCamera: {fileID: 1036088655}
   FocusCamera: {fileID: 1457088233}
-  ControlPanel: {fileID: 0}
   ControlExtraUI: {fileID: 0}
-  Location: {fileID: 0}
   Focus_Mode: 0
-  Focus_PosX_Offset: 0
-  Focus_PosZ_Offset: 0
-  Focus_Camera_RotX: 0
-  Focus_Field_of_View: 0
-  Focus_Theta: 0
   View: 0
   Lugs: []
   Slices: []
@@ -33725,7 +33704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -35242,7 +35221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -35569,7 +35548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 26
+  Label: 11
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -41193,7 +41172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 20
+  Label: 5
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -41265,7 +41244,6 @@ MonoBehaviour:
   MouseCarryDistance: 0.004
   MouseCarryOffset: {x: 0, y: 0}
   AttachedToReceptor: 0
-  OriginalWorldRotation: {x: 0, y: 0, z: 0, w: 0}
   AttachedPin: {fileID: 0}
   PinAttachmentRotation: {x: 270, y: 301.31, z: 0}
   PinAttachmentScale: {x: 7, y: 7, z: 7}
@@ -42201,7 +42179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -43562,7 +43540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -46537,7 +46515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 25
+  Label: 10
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -48156,7 +48134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -48780,7 +48758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -49424,7 +49402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -50847,7 +50825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -51832,7 +51810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -53261,7 +53239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -53475,7 +53453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -55208,7 +55186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -55406,7 +55384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -55900,7 +55878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -57061,7 +57039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 25
+  Label: 10
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -59153,18 +59131,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Harpsichord
   MainCamera: {fileID: 1036088655}
   FocusCamera: {fileID: 2071334254}
-  ControlPanel: {fileID: 7434827500219660784}
   ControlExtraUI: {fileID: 1518946525}
-  Location: {fileID: 0}
   Focus_Mode: 0
-  Focus_PosX_Offset: 0
-  Focus_PosZ_Offset: 0
-  Focus_Camera_RotX: 0
-  Focus_Field_of_View: 0
-  Focus_Theta: 0
   View: 0
   Database: {fileID: 11400000, guid: 5f7d4113f2cbe7a4aa449fb347b7b3e4, type: 2}
-  DemoAudioSource: {fileID: 0}
   PlayerNearReferencePoint: {fileID: 554261171}
   PlayerNearDistance: 2.3
   PlayDemoMessage: {fileID: 1272119713}
@@ -59188,7 +59158,9 @@ MonoBehaviour:
   MaximumInitialTuningErrorCents: 200
   CorrectTuningToleranceCents: 5
   HarpsichordTunedMessage: {fileID: 516818787}
-  TuningPins: []
+  InstrumentsTunedManager: {fileID: 1417368891}
+  TuningPins:
+  - {fileID: 0}
 --- !u!82 &5426343670139236777
 AudioSource:
   m_ObjectHideFlags: 0
@@ -59635,7 +59607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -60498,7 +60470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -60596,7 +60568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -62033,7 +62005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -62663,7 +62635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -63701,7 +63673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -64265,7 +64237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 26
+  Label: 11
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -65085,7 +65057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -65480,7 +65452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 26
+  Label: 11
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -65938,7 +65910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -66590,7 +66562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -67009,7 +66981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -67443,7 +67415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 26
+  Label: 11
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -67951,7 +67923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -68451,7 +68423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -69484,7 +69456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -69731,7 +69703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -70383,7 +70355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -70594,7 +70566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -71344,7 +71316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -71711,7 +71683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -72048,7 +72020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 25
+  Label: 10
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -72318,7 +72290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -72611,7 +72583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -73071,7 +73043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -73417,7 +73389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -73905,7 +73877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 24
+  Label: 9
   Zoomable: 1
   Pressable: 0
   Rotatable: 0
@@ -74039,7 +74011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -74320,7 +74292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -74531,7 +74503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -74679,7 +74651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -75128,7 +75100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -76000,7 +75972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -76084,7 +76056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -76738,7 +76710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 25
+  Label: 10
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -77178,7 +77150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -77688,7 +77660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -78079,7 +78051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -78534,7 +78506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -78971,7 +78943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -79270,7 +79242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -79787,7 +79759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -80145,7 +80117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -80734,7 +80706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 26
+  Label: 11
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -81112,7 +81084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -81545,7 +81517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -82074,7 +82046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 18
+  Label: 3
   Zoomable: 1
   Pressable: 0
   Rotatable: 0
@@ -82433,7 +82405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 25
+  Label: 10
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -83023,7 +82995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -83162,7 +83134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -83656,7 +83628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -84073,7 +84045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -84753,7 +84725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -84876,7 +84848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -85397,7 +85369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -85764,7 +85736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -86598,7 +86570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -87121,7 +87093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -87231,7 +87203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -87744,7 +87716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 26
+  Label: 11
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -87828,7 +87800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -87925,7 +87897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -88071,7 +88043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -88214,7 +88186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -88997,7 +88969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -89425,7 +89397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -89657,7 +89629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -89912,7 +89884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -90097,7 +90069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -90291,7 +90263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 25
+  Label: 10
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -90480,7 +90452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -90804,7 +90776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -91116,7 +91088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -91524,7 +91496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -91693,7 +91665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 25
+  Label: 10
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -92278,7 +92250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -92627,7 +92599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -92826,7 +92798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -93268,7 +93240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 26
+  Label: 11
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -93450,7 +93422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -93803,7 +93775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -94239,7 +94211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -94452,7 +94424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -94941,7 +94913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -95254,7 +95226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -95626,7 +95598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -96044,7 +96016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -96273,7 +96245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -96554,7 +96526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -97140,7 +97112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -97217,7 +97189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -97592,7 +97564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -98093,7 +98065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -98391,7 +98363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 26
+  Label: 11
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -98901,7 +98873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 26
+  Label: 11
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -99198,7 +99170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -99801,7 +99773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -100178,7 +100150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -100392,7 +100364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -100624,7 +100596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -100912,7 +100884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -101139,7 +101111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 25
+  Label: 10
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -101426,7 +101398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -101524,7 +101496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -102092,7 +102064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -102558,7 +102530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 26
+  Label: 11
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -102652,7 +102624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -102895,7 +102867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -103188,7 +103160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 1
   Rotatable: 0
@@ -103522,7 +103494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -103811,7 +103783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -104078,7 +104050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -104299,7 +104271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -104505,7 +104477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -104574,7 +104546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 19
+  Label: 4
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -104705,7 +104677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -105028,7 +105000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 25
+  Label: 10
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -105323,7 +105295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 25
+  Label: 10
   Zoomable: 0
   Pressable: 0
   Rotatable: 0
@@ -105812,7 +105784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60943b2ac54b29f47a38c8c50086a512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseUI
-  Label: 16
+  Label: 1
   Zoomable: 0
   Pressable: 0
   Rotatable: 0

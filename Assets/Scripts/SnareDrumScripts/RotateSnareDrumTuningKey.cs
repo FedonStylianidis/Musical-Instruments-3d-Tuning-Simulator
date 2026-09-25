@@ -1,47 +1,4 @@
-/*using UnityEngine;
 
-public class RotateSnareDrumTuningKey
-    : LimitedRotatableObject
-{
-    private CarrySnareDrumTuningKey carryKey;
-
-    [Header("Tuning")]
-    public float TensionChangePerDegree =
-    0.002f;
-    public override void Start()
-    {
-        base.Start();
-
-        carryKey =
-            GetComponent<
-                CarrySnareDrumTuningKey>();
-    }
-
-    public void prepareForLug()
-    {
-        StartingRotation =
-            transform.rotation;
-
-        CurrentAngle = 0f;
-    }
-    
-  
-    protected override void afterRotation(
-        float actualRotation)
-    {
-        if (carryKey == null)
-            return;
-
-        if (carryKey.AttachedLug == null)
-            return;
-
-
-        carryKey.AttachedLug.changeTension(
-      actualRotation *
-      TensionChangePerDegree
-  );
-    }
-}*/
 
 using UnityEngine;
 
@@ -100,13 +57,6 @@ public class RotateSnareDrumTuningKey
     protected override void afterRotation(
         float actualRotation)
     {
-        if (carryKey == null)
-            return;
-
-        if (carryKey.AttachedLug == null)
-            return;
-
-
         // ------------------------------------------------
         // 1. TUNING-ROD DISPLACEMENT
         // ------------------------------------------------

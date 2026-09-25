@@ -36,7 +36,6 @@ public class RecorderTuningDisplay : MonoBehaviour
 
     public void updateDisplay(
         string targetNote,
-        float targetFrequency,
         float currentFrequency,
         float centsDifference)
     {

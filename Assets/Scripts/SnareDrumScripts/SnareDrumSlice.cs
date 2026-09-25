@@ -1,66 +1,7 @@
-/*using UnityEngine;
-
-public class SnareDrumSlice : InteractableObject
-{
-    public int SliceNumber;
-    public AudioClip Sound;
-    private AudioSource audioSource;
-    private SnareDrum snareDrum;
-
-    public float TargetTension = 1f;
-    public float CurrentTension = 1f;
-
-    public float MinimumTension = 0.7f;
-    public float MaximumTension = 1.3f;
-
-    public override void Start()
-    {
-        base.Start();
-
-        snareDrum =
-            GetComponentInParent<SnareDrum>();
-
-        audioSource =GetComponent<AudioSource>();
-    }
-
-    public override void press()
-    {
-        if (audioSource == null ||
-            Sound == null)
-        {
-            return;
-        }
-
-        audioSource.clip = Sound;
-        audioSource.pitch = 1f;
-        audioSource.Play();
-    }
-
-    public void updatePitch()
-    {
-        if (audioSource == null)
-            return;
-
-        float tensionRatio =
-            CurrentTension / TargetTension;
-
-        float pitchRatio =
-            Mathf.Sqrt(tensionRatio);
-
-        audioSource.pitch =
-            pitchRatio;
-    }
-    public override string getTooltipName()
-    {
-        return "SNARE MEMBRANE PART " + SliceNumber;
-    }
-}  */
-
 using UnityEngine;
 using System.Collections;
 
-public class SnareDrumSlice
-    : InteractableObject
+public class SnareDrumSlice : InteractableObject
 {
     public int SliceNumber;
 
@@ -95,9 +36,6 @@ public class SnareDrumSlice
     // completely after M is released.
     public float ReleaseFadeDuration = 0.15f;
 
-
-    private SnareDrum snareDrum;
-
     private AudioSource audioSource;
 
     private Coroutine fadeCoroutine;
@@ -112,21 +50,12 @@ public class SnareDrumSlice
     {
         base.Start();
 
-
-        snareDrum =
-            GetComponentInParent<SnareDrum>();
-
-
         audioSource =
             GetComponent<AudioSource>();
 
-
         updatePitch();
 
-        if (GlowVisual != null)
-        {
-            GlowVisual.SetActive(false);
-        }
+        GlowVisual.SetActive(false);  
     }
 
 
@@ -139,12 +68,6 @@ public class SnareDrumSlice
 
     public override void press()
     {
-        if (audioSource == null ||
-            Sound == null)
-        {
-            return;
-        }
-
         // Set the pitch according to the
         // current membrane tension.
         updatePitch();
@@ -164,13 +87,6 @@ public class SnareDrumSlice
 
     public void playSound()
     {
-        if (audioSource == null ||
-            Sound == null)
-        {
-            return;
-        }
-
-
         // If the previous sound is still
         // fading out, cancel that fade.
         if (fadeCoroutine != null)
@@ -207,10 +123,6 @@ public class SnareDrumSlice
 
     public void stopSound()
     {
-        if (audioSource == null)
-            return;
-
-
         // Stop any previous fade before
         // starting a new one.
         if (fadeCoroutine != null)
@@ -284,10 +196,6 @@ public class SnareDrumSlice
 
     public void updatePitch()
     {
-        if (audioSource == null)
-            return;
-
-
         // Circular membrane physics:
         //
         //      f        T
@@ -346,19 +254,13 @@ public class SnareDrumSlice
 
     public void startGlow()
     {
-        if (GlowVisual != null)
-        {
             GlowVisual.SetActive(true);
-        }
     }
 
 
     public void stopGlow()
     {
-        if (GlowVisual != null)
-        {
-            GlowVisual.SetActive(false);
-        }
+        GlowVisual.SetActive(false);
     }
 
     private IEnumerator glowForOneSecond()

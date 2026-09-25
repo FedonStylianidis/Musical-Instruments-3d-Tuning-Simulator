@@ -26,9 +26,6 @@ public class RecorderMouthpiece : InteractableObject
 
     public override void release()
     {
-        if (Recorder == null)
-            return;
-
 
         Recorder.stopCurrentNote();
     }

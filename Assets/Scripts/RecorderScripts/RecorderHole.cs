@@ -12,7 +12,7 @@ public class RecorderHole : InteractableObject
     [Header("Hole")]
     public int HoleNumber;
 
-    public bool AllowsHalfCover = false;
+    public bool AllowsHalfCover;  //default is false
 
     [HideInInspector]
     public RecorderHoleState State = RecorderHoleState.Open;
@@ -34,19 +34,16 @@ public class RecorderHole : InteractableObject
         Transform coverVisual =
      transform.Find("CoverVisual");
 
-        if (coverVisual != null)
-        {
+      
             CoverRenderer =
                 coverVisual.GetComponent<MeshRenderer>();
 
-            if (CoverRenderer != null)
-            {
                 CoverRenderer.material =
                     CoveredMaterial;
 
                 CoverRenderer.enabled = false;
-            }
-        }
+            
+        
 
         Transform halfCoverVisual =
             transform.Find("HalfCoverVisual");
@@ -56,13 +53,12 @@ public class RecorderHole : InteractableObject
             HalfCoverRenderer =
                 halfCoverVisual.GetComponent<MeshRenderer>();
 
-            if (HalfCoverRenderer != null)
-            {
+            
                 HalfCoverRenderer.material =
                     CoveredMaterial;
 
                 HalfCoverRenderer.enabled = false;
-            }
+            
         }
     }
 
@@ -102,12 +98,7 @@ public class RecorderHole : InteractableObject
                 State = RecorderHoleState.Open;
         }
 
-        Debug.Log(
-            "Recorder Hole " +
-            HoleNumber +
-            ": " +
-            State
-        );
+     
         updateVisual();
     }
 

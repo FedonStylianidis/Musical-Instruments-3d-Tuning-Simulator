@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using JetBrains.Annotations;
 
 public class Recorder : Instrument
 {
@@ -11,7 +12,7 @@ public class Recorder : Instrument
     public GameObject RecorderTunedMessage;
     public MessageManager MessageManager;
 
-    private bool WasBeingCarried = false;
+    private bool WasBeingCarried ;
 
     [Header("Recorder Holes")]
     public GameObject[] Holes = new GameObject[10];
@@ -21,7 +22,7 @@ public class Recorder : Instrument
 
     private RecorderDatabase.RecorderNoteData CurrentlyPlayingNote;
 
-    private bool NoteIsBeingHeld = false;
+    private bool NoteIsBeingHeld;
 
     [Header("Recorder Audio")]
     public AudioSource RecorderAudioSource;
@@ -48,7 +49,6 @@ public class Recorder : Instrument
      new Vector3(182.59f, 348.8f, -495.3f);
     public Vector3 BackRotation;
 
-    private bool ShowingBack = false;
 
     [Header("Recorder Tuning")]
     public Transform HeadJoint;
@@ -67,9 +67,7 @@ public class Recorder : Instrument
 
     public float HeadJointPitchSensitivity = 1.5f;
 
-    private bool DemoIsPlaying = false;
-
-
+    private bool DemoIsPlaying ;
 
 
 
@@ -102,7 +100,6 @@ public class Recorder : Instrument
             ) < MinimumStartingDetuning
         );
 
-
         Vector3 startingPosition =
             HeadJointOriginalLocalPosition;
 
@@ -110,260 +107,259 @@ public class Recorder : Instrument
             StartingHeadJointPull;
 
         HeadJoint.localPosition =
-            startingPosition; ;
+            startingPosition; 
 
-        if (RecorderPickupMessage != null)
-        {
             RecorderPickupMessage.SetActive(false);
-        }
-        if (RecorderInstructionMessage != null)
-        {
             RecorderInstructionMessage.SetActive(false);
-        }
-
-        if (RecorderTuningMessage != null)
-        {
             RecorderTuningMessage.SetActive(false);
-        }
-
-        if (RecorderTunedMessage != null)
-        {
             RecorderTunedMessage.SetActive(false);
-        }
-        if (RecorderFingeringChart != null)
-        {
             RecorderFingeringChart.SetActive(false);
-        }
-
-        if (TuningDisplay != null)
-        {
+      
             TuningDisplay.clearDisplay();
-        }
-
+      
         setAllHoleColliders(false);
     }
-
-
-
-
+      
 
     void Update()
     {
         bool IsBeingCarried =
             MouseUI.ObjectBeingCarried == gameObject;
 
-        if (IsBeingCarried && !WasBeingCarried)
+
+        if (IsBeingCarried &&
+            !WasBeingCarried)
         {
             MessageManager.showMessageOnce(
-                   RecorderPickupMessage,
-                   5f
-                                      );
+                RecorderPickupMessage,
+                5f
+            );
         }
 
-        if((IsBeingCarried || View == locked) && Input.GetMouseButtonDown(1))
-        {
-            FocusCamera.transform.position =
-                MainCamera.transform.position;
 
-            FocusCamera.transform.rotation =
-                MainCamera.transform.rotation;
-
-            toggleView();
-            if (View == locked)
-            {
-                ShowingBack = false;
-
-                hideFrontHoleColliders(false);
-
-                if (TuningDisplay != null)
-                {
-                    TuningDisplay.clearDisplay();
-                }
-                if (MessageManager != null &&
-                    RecorderInstructionMessage != null)
-                {
-                    MessageManager.showMessageOnce(
-                        RecorderInstructionMessage,
-                        10f
-                    );
-                }
-                transform.localPosition = TuningLocalPosition;
-                transform.localEulerAngles = TuningLocalRotation;
-                transform.localScale = TuningLocalScale;
-
-                MouseUI.ObjectBeingCarried = null;
-                MouseUI.switchCursor(MouseUI.Wedge);
-                GetComponent<MovableObject>().enabled = false;
-                RecorderTuningMeterCanvas.SetActive(true);   
-            }
-            else
-            {
-                resetAllHoles();
-                setAllHoleColliders(false);
-                GetComponent<MovableObject>().enabled = true;
-
-                MouseUI.ObjectBeingCarried = gameObject;
-
-                Ego.GetComponent<EgoController>().attach(gameObject);
-
-                GetComponent<MovableObject>().setCarryingPose();
-                MouseUI.hideCursor();
-                RecorderTuningMeterCanvas.SetActive(false);
-                if (RecorderFingeringChart != null)
-                {
-                    RecorderFingeringChart.SetActive(false);
-                }
-            }
-        }
-        
-
-        //play demo when in tuning or carried
         if ((IsBeingCarried || View == locked) &&
-          Input.GetKeyDown(KeyCode.P))
+            Input.GetMouseButtonDown(1))
+        {
+            toggleTuningView();
+        }
+
+
+        if ((IsBeingCarried || View == locked) &&
+            Input.GetKeyDown(KeyCode.P))
         {
             PlayRecorderDemo();
         }
 
+
         if (View == locked)
         {
+            handleTuningInput();
+        }
 
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                if (RecorderFingeringChart != null)
-                {
-                    RecorderFingeringChart.SetActive(
-                        !RecorderFingeringChart.activeSelf
-                    );
-                }
-            }
 
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                playCurrentNote();
-            }
-            if (NoteIsBeingHeld)
-            {
-                updatePlayingNotePitch();
-                updateTuningDisplay();
-            }
-
-            if (Input.GetKeyUp(KeyCode.M))
-            {
-                stopCurrentNote();
-            }
+        WasBeingCarried =
+            IsBeingCarried;
+    }
 
 
 
+    private void toggleTuningView()
+    {
+        FocusCamera.transform.position =
+            MainCamera.transform.position;
 
-            float mouseWheel =
-    Input.GetAxis("Mouse ScrollWheel");
+        FocusCamera.transform.rotation =
+            MainCamera.transform.rotation;
 
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) ||
-                mouseWheel < 0f)
-                
-            {
-            Debug.Log("DOWN ARROW PRESSED");
-            transform.localEulerAngles = BackRotation;
-            ShowingBack = true;
+        toggleView();
+
+
+        if (View == locked)
+        {
+            hideFrontHoleColliders(false);
+
+            TuningDisplay.clearDisplay();
+
+            MessageManager.showMessageOnce(
+                RecorderInstructionMessage,
+                10f
+            );
+
+
+            transform.localPosition =
+                TuningLocalPosition;
+
+            transform.localEulerAngles =
+                TuningLocalRotation;
+
+            transform.localScale =
+                TuningLocalScale;
+
+
+            MouseUI.ObjectBeingCarried =
+                null;
+
+            MouseUI.switchCursor(
+                MouseUI.Wedge
+            );
+
+
+            GetComponent<MovableObject>().enabled =
+                false;
+
+            RecorderTuningMeterCanvas.SetActive(
+                true
+            );
+        }
+        else
+        {
+            resetAllHoles();
+
+            setAllHoleColliders(false);
+
+
+            GetComponent<MovableObject>().enabled =
+                true;
+
+            MouseUI.ObjectBeingCarried =
+                gameObject;
+
+
+            Ego.GetComponent<EgoController>()
+                .attach(gameObject);
+
+            GetComponent<MovableObject>()
+                .setCarryingPose();
+
+
+            MouseUI.hideCursor();
+
+            RecorderTuningMeterCanvas.SetActive(
+                false
+            );
+
+            RecorderFingeringChart.SetActive(
+                false
+            );
+        }
+    }
+
+    private void handleTuningInput()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            RecorderFingeringChart.SetActive(
+                !RecorderFingeringChart.activeSelf
+            );
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            playCurrentNote();
+        }
+
+
+        if (NoteIsBeingHeld)
+        {
+            updatePlayingNotePitch();
+            updateTuningDisplay();
+        }
+
+
+        if (Input.GetKeyUp(KeyCode.M))
+        {
+            stopCurrentNote();
+        }
+
+
+        float mouseWheel =
+            Input.GetAxis("Mouse ScrollWheel");
+
+
+        if (Input.GetKeyDown(KeyCode.DownArrow) ||
+            mouseWheel < 0f)
+        {
+            transform.localEulerAngles =
+                BackRotation;
 
             hideFrontHoleColliders(true);
-            }
-
-         
-
-
-            if (Input.GetKeyDown(KeyCode.UpArrow) ||
-                mouseWheel > 0f)
-            {
-                transform.localEulerAngles = FrontRotation;
-                ShowingBack = false;
-                hideFrontHoleColliders(false);
-            }
-
-            //movement of head joint  with arrows and mouse
-            float movement = 0.00001f;
-
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                Vector3 position = HeadJoint.localPosition;
-
-                position.x += movement;
-
-                position.x = Mathf.Clamp(
-                    position.x,
-                    HeadJointOriginalLocalPosition.x,
-                    HeadJointOriginalLocalPosition.x + HeadJointMaxPull
-                );
-
-                HeadJoint.localPosition = position;
-            }
-
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                Vector3 position = HeadJoint.localPosition;
-
-                position.x -= movement;
-
-                position.x = Mathf.Clamp(
-                    position.x,
-                    HeadJointOriginalLocalPosition.x,
-                    HeadJointOriginalLocalPosition.x + HeadJointMaxPull
-                );
-
-                HeadJoint.localPosition = position;
-            }
-
-            if (Input.GetMouseButton(0) &&
-     NoteIsBeingHeld)
-            {
-                float mouseMovement =
-                    -Input.GetAxis("Mouse X") *
-                    HeadJointMouseSensitivity;
-
-                Vector3 headPosition =
-                    HeadJoint.localPosition;
-
-                headPosition.x +=
-                    mouseMovement;
-
-                headPosition.x =
-                    Mathf.Clamp(
-                        headPosition.x,
-                        HeadJointOriginalLocalPosition.x,
-                        HeadJointOriginalLocalPosition.x +
-                        HeadJointMaxPull
-                    );
-
-                HeadJoint.localPosition =
-                    headPosition;
-            }
-
         }
 
-        WasBeingCarried = IsBeingCarried;
-    }
 
-
-
-
-    private void setAllHoleColliders(
-    bool enabled)
-    {
-        for (int i = 0;
-             i < Holes.Length;
-             i++)
+        if (Input.GetKeyDown(KeyCode.UpArrow) ||
+            mouseWheel > 0f)
         {
-            Collider holeCollider =
-                Holes[i].GetComponent<Collider>();
+            transform.localEulerAngles =
+                FrontRotation;
 
-            if (holeCollider != null)
-            {
-                holeCollider.enabled =
-                    enabled;
-            }
+            hideFrontHoleColliders(false);
+        }
+
+
+        float HeadJointMovement =
+            0.00001f;
+
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            moveHeadJoint(
+                HeadJointMovement
+            );
+        }
+
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            moveHeadJoint(
+                -HeadJointMovement
+            );
+        }
+
+
+        if (Input.GetMouseButton(0) &&
+            NoteIsBeingHeld)
+        {
+            float mouseMovement =
+                -Input.GetAxis("Mouse X") *
+                HeadJointMouseSensitivity;
+
+            moveHeadJoint(
+                mouseMovement
+            );
         }
     }
+
+    private void moveHeadJoint(float movement)
+    {
+        Vector3 position =
+            HeadJoint.localPosition;
+
+        position.x +=
+            movement;
+
+        position.x =
+            Mathf.Clamp(
+                position.x,
+                HeadJointOriginalLocalPosition.x,
+                HeadJointOriginalLocalPosition.x +
+                HeadJointMaxPull
+            );
+
+        HeadJoint.localPosition =
+            position;
+    }
+    private void setAllHoleColliders(bool enabled)
+    {
+        for (int i = 0; i < Holes.Length; i++)
+        {
+            Holes[i]
+                .GetComponent<Collider>()
+                .enabled = enabled;
+        }
+    }
+
     private void hideFrontHoleColliders(bool hide)
     {
         for (int i = 0; i < Holes.Length; i++)
@@ -371,8 +367,7 @@ public class Recorder : Instrument
             Collider holeCollider =
                 Holes[i].GetComponent<Collider>();
 
-            if (holeCollider != null)
-            {
+          
                 if (i == 9)
                 {
                     // Hole 10 is the back/thumb hole.
@@ -383,7 +378,7 @@ public class Recorder : Instrument
                     // Holes 1-9 are the front holes.
                     holeCollider.enabled = !hide;
                 }
-            }
+            
         }
     }
 
@@ -444,11 +439,9 @@ public class Recorder : Instrument
         {
             RecorderHole hole =
                 Holes[i].GetComponent<RecorderHole>();
-
-            if (hole != null)
-            {
+           
                 hole.resetHole();
-            }
+           
         }
     }
     // Gets note from state of holes
@@ -477,21 +470,11 @@ public class Recorder : Instrument
         {
             RecorderAudioSource.Stop();
 
-            Debug.Log(
-                "This fingering does not produce " +
-                "a valid recorder note."
-            );
-
             return;
         }
 
         if (note.Sound == null)
         {
-            Debug.LogWarning(
-                "No sound assigned for " +
-                note.Note
-            );
-
             return;
         }
 
@@ -499,14 +482,12 @@ public class Recorder : Instrument
 
         NoteIsBeingHeld = true;
 
-        if (MessageManager != null &&
-             RecorderTuningMessage != null)
-        {
+      
             MessageManager.showMessageOnce(
                 RecorderTuningMessage,
                 5f
             );
-        }
+        
 
         float tunedFrequency =
             getTunedFrequency(
@@ -536,13 +517,6 @@ public class Recorder : Instrument
             updateTuningDisplay();
         }
 
-        Debug.Log(
-            "Playing " +
-            note.Note +
-            " - " +
-            tunedFrequency +
-            " Hz"
-        );
     }
     public void stopCurrentNote()
     {
@@ -658,15 +632,13 @@ public class Recorder : Instrument
 
         TuningDisplay.updateDisplay(
             note.Note.ToString(),
-            targetFrequency,
+         
             currentFrequency,
             centsDifference
         );
         if (Mathf.Abs(centsDifference) <= 5f)
         {
-            if (MessageManager != null &&
-                RecorderTunedMessage != null)
-            {
+       
                 MessageManager.showMessageOnce(
                     RecorderTunedMessage,
                     3f
@@ -674,44 +646,11 @@ public class Recorder : Instrument
 
                 FindFirstObjectByType<AllInstrumentsTunedManager>().recorderCompleted();
 
-            }
+            
         }
     }
 
-    // Physics implementation 
-   /* public float getTunedFrequency(float originalFrequency)
-    {
-        // Pulling the Head Joint increases the effective length
-        // of the recorder's air column.
-        float pull =
-            HeadJoint.localPosition.x -
-            HeadJointOriginalLocalPosition.x;
-
-        // Limit the displacement between the fully pushed-in
-        // position and the maximum allowed pull.
-        pull = Mathf.Clamp(
-            pull,
-            0f,
-            HeadJointMaxPull
-        );
-
-        // New effective air-column length:
-        // L_new = L_0 + ΔL
-        float currentEffectiveLength =
-            OriginalEffectiveLength + pull;
-
-        // For an ideal air column:
-        // f ∝ 1 / L
-        //
-        // Therefore:
-        // f_new = f_0 * L_0 / L_new
-        //
-        // Pulling the Head Joint increases L_new,
-        // therefore decreasing the produced frequency.
-        return originalFrequency *
-               OriginalEffectiveLength /
-               currentEffectiveLength;
-    }  */
+   //Physics Implementation
     public float getTunedFrequency(float originalFrequency)
     {
         // Calculate the current pull of the Head Joint
@@ -863,10 +802,6 @@ public class Recorder : Instrument
 
         if (noteData == null)
         {
-            Debug.LogWarning(
-                "No recorder data found for " +
-                note
-            );
 
             yield break;
         }
@@ -874,10 +809,6 @@ public class Recorder : Instrument
 
         if (noteData.Sound == null)
         {
-            Debug.LogWarning(
-                "No sound assigned for " +
-                note
-            );
 
             yield break;
         }
@@ -905,7 +836,7 @@ public class Recorder : Instrument
 
             TuningDisplay.updateDisplay(
                 noteData.Note.ToString(),
-                noteData.Frequency,
+             
                 tunedFrequency,
                 centsDifference
             );
@@ -932,15 +863,6 @@ public class Recorder : Instrument
 
         RecorderAudioSource.Play();
 
-
-       /*  yield return new WaitForSeconds(
-             duration
-         );
-
-
-         FadeOutAndStop(
-             ReleaseFadeDuration
-         ); */
 
         float playDuration =
    Mathf.Max(

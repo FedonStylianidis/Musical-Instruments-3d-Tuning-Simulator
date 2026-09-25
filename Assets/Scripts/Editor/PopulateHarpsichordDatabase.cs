@@ -134,7 +134,6 @@ public class PopulateHarpsichordDatabase : EditorWindow
             Note = note,
             DisplayName = displayName,
             TargetFrequency = frequency,
-            CurrentFrequency = frequency,
             Sound = clip
         };
 

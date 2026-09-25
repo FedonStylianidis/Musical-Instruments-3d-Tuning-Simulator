@@ -122,9 +122,5 @@ public class TuningToolMode : MonoBehaviour
             mouseUI.Movable = false;
             mouseUI.Rotatable = true;
         }
-        Debug.Log(
-    "Object being carried: " +
-    MouseUI.ObjectBeingCarried
-);
     }
 }

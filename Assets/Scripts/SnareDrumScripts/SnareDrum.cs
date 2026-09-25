@@ -28,7 +28,7 @@ public class SnareDrum : Instrument
     public GameObject SnareDrumTuningInstructions1;
     public GameObject SnareDrumTuningInstructions2;
 
-    private bool FirstSliceHasBeenTuned = false;
+    private bool FirstSliceHasBeenTuned ;
 
     private MessageManager MessageManager;
 
@@ -37,7 +37,7 @@ public class SnareDrum : Instrument
     [Header("Drumsticks")]
     public GameObject Drumsticks;
 
-    private bool DemoIsPlaying = false;
+    private bool DemoIsPlaying ;
 
     public override void Start()
     {
@@ -54,37 +54,15 @@ public class SnareDrum : Instrument
         randomizeInitialTuning();
 
         MessageManager = FindFirstObjectByType<MessageManager>();
-        if (CorrectPitchMessage != null)
-        {
+       
             CorrectPitchMessage.SetActive(false);
-        }
-        if (SoundsTunedMessage != null)
-        {
             SoundsTunedMessage.SetActive(false);
-        }
-        if (SnareDrumTunedMessage != null)
-        {
             SnareDrumTunedMessage.SetActive(false);
-        }
-
-        if (WrongTuningMessage != null)
-        {
             WrongTuningMessage.SetActive(false);
-        }
-
-        if (SnareDrumTuningInstructions1 != null)
-        {
             SnareDrumTuningInstructions1.SetActive(false);
-        }
-
-        if (SnareDrumTuningInstructions2 != null)
-        {
             SnareDrumTuningInstructions2.SetActive(false);
-        }
-        if (SnareDrumInstructionMessage != null)
-        {
             SnareDrumInstructionMessage.SetActive(false);
-        }
+        
         setTuningColliders(false);
 
     }
@@ -97,17 +75,12 @@ public class SnareDrum : Instrument
         if (View == locked &&
     Input.GetKeyDown(KeyCode.F))
         {
-
-            if (SnareDrumTuningInstructions1 != null && SnareDrumTuningInstructions2 != null)
-            {
                 SnareDrumTuningInstructions1.SetActive(
                     !SnareDrumTuningInstructions1.activeSelf
                 );
                 SnareDrumTuningInstructions2.SetActive(
                     !SnareDrumTuningInstructions2.activeSelf
                     );
-            }
-
         }
         moveTuningCamera();
 
@@ -125,7 +98,6 @@ public class SnareDrum : Instrument
             Collider collider =
                 lug.GetComponent<Collider>();
 
-            if (collider != null)
                 collider.enabled = enabled;
         }
 
@@ -134,7 +106,6 @@ public class SnareDrum : Instrument
             Collider collider =
                 slice.GetComponent<Collider>();
 
-            if (collider != null)
                 collider.enabled = enabled;
         }
     }
@@ -160,45 +131,33 @@ public class SnareDrum : Instrument
         if (View)
         {
             // Hide the drumsticks.
-            if (Drumsticks != null)
-            {
+    
                 Drumsticks.SetActive(false);
-            }
+            
 
 
             // Show the introductory instructions once.
-            if (MessageManager != null &&
-                SnareDrumInstructionMessage != null)
-            {
+          
                 MessageManager.showMessageOnce(
                     SnareDrumInstructionMessage,
                     10f
                 );
-            }
+            
         }
 
         // Leaving Snare Drum tuning mode.
         else
         {
             // Show the drumsticks again.
-            if (Drumsticks != null)
-            {
+        
                 Drumsticks.SetActive(true);
-            }
+            
         }
     }
    
 
     private void moveTuningCamera()
     {
-        if (FocusCamera == null ||
-            !FocusCamera.enabled ||
-            TuningCameraPivot == null)
-        {
-            return;
-        }
-
-
         // Arrow keys.
         float movement = 0f;
 
@@ -283,24 +242,13 @@ public class SnareDrum : Instrument
                     slice.MaximumTension
                 );
 
-
             slice.updatePitch();
 
-
-            Debug.Log(
-                "Slice " +
-                slice.SliceNumber +
-                " starts at " +
-                cents.ToString("F1") +
-                " cents"
-            );
         }
     }
     public void showTunedMessage()
     {
-        if (MessageManager == null)
-            return;
-
+     
 
         // The first successfully tuned slice
         // receives the reference-pitch message.
@@ -308,13 +256,12 @@ public class SnareDrum : Instrument
         {
             FirstSliceHasBeenTuned = true;
 
-            if (CorrectPitchMessage != null)
-            {
+           
                 MessageManager.showMessage(
                     CorrectPitchMessage,
                     5f
                 );
-            }
+            
 
             return;
         }
@@ -322,23 +269,16 @@ public class SnareDrum : Instrument
 
         // Every later successfully tuned slice
         // receives the shorter feedback message.
-        if (SoundsTunedMessage != null)
-        {
+      
             MessageManager.showMessage(
                 SoundsTunedMessage,
                 5f
             );
-        }
+        
     }
 
     public void showSnareDrumTunedMessage()
     {
-        if (MessageManager == null ||
-            SnareDrumTunedMessage == null)
-        {
-            return;
-        }
-
         MessageManager.showMessage(
             SnareDrumTunedMessage,
             5f
@@ -348,11 +288,6 @@ public class SnareDrum : Instrument
 
     public void showWrongTuningMessage()
     {
-        if (MessageManager == null ||
-            WrongTuningMessage == null)
-        {
-            return;
-        }
 
         MessageManager.showMessage(
             WrongTuningMessage,
@@ -362,10 +297,6 @@ public class SnareDrum : Instrument
     public void registerTunedLug(
     int lugNumber)
     {
-        if (TuningAlgorithm == null)
-            return;
-
-
         // Register the lug that has just
         // entered the correct tuning range.
         TuningAlgorithm.registerTunedLug(
@@ -382,7 +313,7 @@ public class SnareDrum : Instrument
 
             FindFirstObjectByType<AllInstrumentsTunedManager>()
         .snareDrumCompleted();
-            return;
+            
         }
 
     }
@@ -390,9 +321,6 @@ public class SnareDrum : Instrument
     public bool isValidNextLug(
     int lugNumber)
     {
-        if (TuningAlgorithm == null)
-            return true;
-
         return TuningAlgorithm.isValidNextLug(
             lugNumber
         );
@@ -402,10 +330,9 @@ public class SnareDrum : Instrument
     {
         // Forget all previously tuned lugs
         // and restart the tuning sequence.
-        if (TuningAlgorithm != null)
-        {
+      
             TuningAlgorithm.resetAlgorithm();
-        }
+        
 
 
         // The next successfully tuned lug

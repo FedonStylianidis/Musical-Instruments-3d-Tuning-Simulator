@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+
 
 public class Harpsichord : Instrument
 {
     public HarpsichordDatabase Database;
-    public AudioSource DemoAudioSource;
 
     private Dictionary<HarpsichordNote, HarpsichordKey> KeysByNote =
         new Dictionary<HarpsichordNote, HarpsichordKey>();
@@ -87,54 +84,16 @@ public class Harpsichord : Instrument
     public GameObject HarpsichordTunedMessage;
 
     private bool HarpsichordHasBeenTuned = false;
-    #region Editor
-#if UNITY_EDITOR
 
-    [CustomEditor(typeof(Harpsichord)), CanEditMultipleObjects]
-    public class Harpsichord_Editor : Instrument_Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
+    public AllInstrumentsTunedManager InstrumentsTunedManager;
 
-            Harpsichord harpsichord =
-                (Harpsichord)target;
 
-            harpsichord.ControlPanel =
-                EditorGUILayout.ObjectField(
-                    "Control Tuning Panel",
-                    harpsichord.ControlPanel,
-                    typeof(GameObject),
-                    true
-                ) as GameObject;
 
-            harpsichord.ControlExtraUI =
-                EditorGUILayout.ObjectField(
-                    "Control Harpsichord UI",
-                    harpsichord.ControlExtraUI,
-                    typeof(GameObject),
-                    true
-                ) as GameObject;
-
-            base.showLocation();
-        }
-    }
-
-#endif
-    #endregion
     public HarpsichordTuningPin[] TuningPins;
 
     public override void Start()
     {
         Focus_Mode = Modes.Harpsichord_Tuning;
-
-        /*Focus_PosX_Offset = 0;
-        Focus_PosZ_Offset = 0;
-
-        Focus_Camera_RotX = 89F;
-
-        Focus_Field_of_View = 45F;
-        Focus_Theta = 0F; */
 
         base.Start();
 
@@ -142,14 +101,11 @@ public class Harpsichord : Instrument
 
         TuningPins = GetComponentsInChildren<HarpsichordTuningPin>();
 
-        Ego = GameObject.Find("Ego");
 
         MessageManager = FindFirstObjectByType<MessageManager>();
 
 
-        if (TuningCameraStartPoint != null &&
-            FocusCamera != null)
-        {
+        
             FocusCamera.transform.localPosition =
                 TuningCameraStartPoint.localPosition;
 
@@ -157,28 +113,13 @@ public class Harpsichord : Instrument
                 TuningCameraStartPoint.localRotation;
 
             TuningCameraPosition = 0f;
-        }
+        
 
-        if (PlayDemoMessage != null)
-        {
-            PlayDemoMessage.SetActive(false);
-        }
-        if (HarpsichordTunedMessage != null)
-        {
-            HarpsichordTunedMessage.SetActive(false);
-        }
-        if (HarpsichordOutOfTuneMessage != null)
-        {
-            HarpsichordOutOfTuneMessage.SetActive(false);
-        }
-        if (TuningCameraInstructionMessage != null)
-        {
-            TuningCameraInstructionMessage.SetActive(false);
-        }
-        if (HammerInstructionMessage != null)
-        {
-            HammerInstructionMessage.SetActive(false);
-        }
+        PlayDemoMessage.SetActive(false);
+        HarpsichordTunedMessage.SetActive(false);
+        HarpsichordOutOfTuneMessage.SetActive(false);
+        TuningCameraInstructionMessage.SetActive(false);
+        HammerInstructionMessage.SetActive(false);
 
 
         // Coroutine that ensures the randomization of the tuning happens after the initilization of the pins
@@ -222,73 +163,46 @@ public class Harpsichord : Instrument
         randomizeInitialTuning();
     }
 
-    /*public void ShowDemoButton()
-    {
-        if (DemoButton != null)
-            DemoButton.SetActive(true);
-    }
-
-    public void HideDemoButton()
-    {
-        if (DemoButton != null)
-            DemoButton.SetActive(false);
-    } */
-
 
     void Update()
     {
-        if (Ego != null &&
-            PlayerNearReferencePoint != null)
+        float distanceFromPlayer = Vector3.Distance(
+      Ego.transform.position,
+      PlayerNearReferencePoint.position
+  );
+
+        PlayerIsNear =
+            (distanceFromPlayer <= PlayerNearDistance);
+
+
+        if (PlayerIsNear)
         {
-            float distance =
-                Vector3.Distance(
-                    Ego.transform.position,
-                    PlayerNearReferencePoint.position
-                );
-
-
-            PlayerIsNear =
-                distance <= PlayerNearDistance;
+            MessageManager.showMessageOnce(
+                PlayDemoMessage,
+                DemoMessageDuration
+            );
         }
-        else
-        {
-            PlayerIsNear = false;
-        }
 
-
-        if (PlayDemoMessage != null)
-        {
-            if (PlayerIsNear &&
-                  MessageManager != null)
+       
+            if (HarpsichordHasBeenTuned &&
+                PlayerIsNear)
             {
-                MessageManager.showMessageOnce(
-                    PlayDemoMessage,
-                    DemoMessageDuration
+                MessageManager.showMessage(
+                    HarpsichordTunedMessage
                 );
             }
-
-            if (MessageManager != null)
+            else
             {
-                if (HarpsichordHasBeenTuned &&
-                    PlayerIsNear)
-                {
-                    MessageManager.showMessage(
-                        HarpsichordTunedMessage
-                    );
-                }
-                else
-                {
-                    MessageManager.hideMessage(
-                        HarpsichordTunedMessage
-                    );
-                }
+                MessageManager.hideMessage(
+                    HarpsichordTunedMessage
+                );
             }
+        
 
-            if (PlayerIsNear &&
-                Input.GetKeyDown(KeyCode.P))
-            {
-                PlayToccataDemo();
-            }
+        if (PlayerIsNear &&
+            Input.GetKeyDown(KeyCode.P))
+        {
+            PlayToccataDemo();
         }
 
 
@@ -299,8 +213,7 @@ public class Harpsichord : Instrument
 
     public void showTuningCameraInstruction()
     {
-        if (MessageManager != null)
-        {
+       
             if (MouseUI.ObjectBeingCarried != null &&
         MouseUI.ObjectBeingCarried.GetComponent<
             CarrySnareDrumTuningKey>() != null)
@@ -312,33 +225,25 @@ public class Harpsichord : Instrument
                 TuningCameraInstructionMessage,
                 TuningCameraInstructionDuration
             );
-        }
+        
     }
 
   public void showHammerInstruction()
 {
 
-    if (MessageManager != null)
-    {
         MessageManager.showMessageOnce(
             HammerInstructionMessage,
             HammerInstructionDuration
         );
-    }
+    
 }
 
   
 
     private void moveTuningCamera()
     {
-        if (FocusCamera == null)
-            return;
 
         if (!FocusCamera.enabled)
-            return;
-
-        if (TuningCameraStartPoint == null ||
-            TuningCameraEndPoint == null)
             return;
 
 
@@ -405,20 +310,17 @@ public class Harpsichord : Instrument
         }
     }
 
-
     public HarpsichordKey GetKey(
-        HarpsichordNote note)
+      HarpsichordNote note)
     {
-        if (KeysByNote.TryGetValue(
+        KeysByNote.TryGetValue(
             note,
-            out HarpsichordKey key))
-        {
-            return key;
-        }
+            out HarpsichordKey key
+        );
 
-
-        return null;
+        return key;
     }
+
 
     public void PlayToccataDemo()
     {
@@ -481,13 +383,11 @@ public class Harpsichord : Instrument
             1.2f
         );
 
-        if (MessageManager != null)
-        {
             MessageManager.showMessageOnce(
                 HarpsichordOutOfTuneMessage,
                 OutOfTuneMessageDuration
             );
-        }
+        
 
         DemoIsPlaying = false;
     }
@@ -501,25 +401,15 @@ public class Harpsichord : Instrument
 
         // Only show the tuner when the
         // harpsichord tuning UI is active.
-        if (ControlExtraUI == null ||
-            !ControlExtraUI.activeInHierarchy)
+        if (  !ControlExtraUI.activeInHierarchy)
         {
             return;
         }
-
-
-        if (TuningDisplay == null)
-            return;
-
 
         KeyData data =
             Database.GetKeyData(
                 key.Note
             );
-
-
-        if (data == null)
-            return;
 
 
         float targetFrequency =
@@ -556,19 +446,8 @@ public class Harpsichord : Instrument
         HarpsichordNote note,
         float duration)
     {
-        if (!KeysByNote.ContainsKey(note))
-        {
-            Debug.LogWarning(
-                "No key found for " + note
-            );
-
-            yield break;
-        }
-
-
         HarpsichordKey key =
-            KeysByNote[note];
-
+     GetKey(note);
 
         key.press();
 
@@ -583,15 +462,12 @@ public class Harpsichord : Instrument
 
     public bool areAllStringsCorrectlyTuned()
     {
-        HarpsichordTuningPin[] pins =
-            GetComponentsInChildren<HarpsichordTuningPin>();
-
-
-        if (pins.Length == 0)
+        if (TuningPins.Length == 0)
+        {
             return false;
+        }
 
-
-        foreach (HarpsichordTuningPin pin in pins)
+        foreach (HarpsichordTuningPin pin in TuningPins)
         {
             if (Mathf.Abs(pin.CurrentCents) >
                 CorrectTuningToleranceCents)
@@ -599,7 +475,6 @@ public class Harpsichord : Instrument
                 return false;
             }
         }
-
 
         return true;
     }
@@ -621,80 +496,46 @@ public class Harpsichord : Instrument
 
 
         // Show the completion message.
-        if (MessageManager != null &&
-            HarpsichordTunedMessage != null)
-        {
             MessageManager.showMessage(
                 HarpsichordTunedMessage,
                 5f
             );
-        }
+
 
 
         // Tell the final manager that
         // the harpsichord is complete.
-        AllInstrumentsTunedManager manager =
-            FindFirstObjectByType<
-                AllInstrumentsTunedManager>();
-
-        if (manager != null)
-        {
-            manager.harpsichordCompleted();
-        }
+        InstrumentsTunedManager.harpsichordCompleted();
     }
-    /*public void checkTuningCompletion()
-    {
-        if (HarpsichordHasBeenTuned)
-
-            MessageManager.showMessage(
-           HarpsichordTunedMessage,
-           5f
-       );
-
-
-        return;
-
-
-        if (!areAllStringsCorrectlyTuned())
-            return;
-
-
-        HarpsichordHasBeenTuned = true;
-
-        Debug.Log(
-            "Harpsichord tuned correctly to equal temperament."
-        );
-    }*/
 
     private void randomizeInitialTuning()
     {
         if (!RandomizeInitialTuning)
             return;
 
-
-        HarpsichordTuningPin[] pins =
-            GetComponentsInChildren<HarpsichordTuningPin>();
-
-
-        if (pins.Length == 0)
+        if (TuningPins.Length == 0)
+        {
             return;
+        }
 
 
         /*
         First set every tunable string
         to its correct tuning.
         */
-        foreach (HarpsichordTuningPin pin in pins)
+        foreach (HarpsichordTuningPin pin in TuningPins)
         {
             pin.setInitialTuning(0f);
         }
 
 
+        const int RequiredDemoNotes = 3;
+
         int minimum =
             Mathf.Clamp(
                 MinimumRandomOutOfTuneStrings,
-                3,
-                pins.Length
+                RequiredDemoNotes,
+                TuningPins.Length
             );
 
 
@@ -702,7 +543,7 @@ public class Harpsichord : Instrument
             Mathf.Clamp(
                 MaximumRandomOutOfTuneStrings,
                 minimum,
-                pins.Length
+                TuningPins.Length
             );
 
 
@@ -764,11 +605,11 @@ public class Harpsichord : Instrument
         Find the tuning pins belonging to
         the first three randomized demo notes.
         */
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < RequiredDemoNotes; i++)
         {
             foreach (
                 HarpsichordTuningPin pin
-                in pins)
+                in TuningPins)
             {
                 if (pin.Note == demoNotes[i])
                 {
@@ -788,7 +629,7 @@ public class Harpsichord : Instrument
             new List<HarpsichordTuningPin>();
 
 
-        foreach (HarpsichordTuningPin pin in pins)
+        foreach (HarpsichordTuningPin pin in TuningPins)
         {
             if (!selectedPins.Contains(pin))
             {
@@ -882,36 +723,8 @@ public class Harpsichord : Instrument
                 tuningError
             );
 
-
-            Debug.Log(
-                "Initial tuning: "
-                + pin.Note
-                + " = "
-                + tuningError.ToString("F1")
-                + " cents"
-            );
         }
 
-
-        /*
-        Show which three notes of the demo
-        melody were deliberately detuned.
-        */
-        Debug.Log(
-            "Detuned demo notes: "
-            + demoNotes[0]
-            + ", "
-            + demoNotes[1]
-            + ", "
-            + demoNotes[2]
-        );
-
-
-        Debug.Log(
-            "Random tuning exercise created with "
-            + numberOfMistunedStrings
-            + " mistuned strings."
-        );
     }
 
 }

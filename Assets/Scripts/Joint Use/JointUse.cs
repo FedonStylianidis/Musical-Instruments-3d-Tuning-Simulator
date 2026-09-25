@@ -12,13 +12,13 @@ public class Values_After_JointUse
     public bool Receptor_NewInteractivity;
 
 
-    public Values_After_JointUse(bool _JointUse_TookPlace, GameObject _NewPlace_for_ObjectBeingCarried, bool _NewInteractivity_for_ObectBeingCarried, GameObject _NewPlace_for_Receptor, bool _NewInteractivity_for_Receptor)
+    public Values_After_JointUse(bool _JointUse_TookPlace, GameObject _NewPlace_for_ObjectBeingCarried, bool _NewInteractivity_for_ObjectBeingCarried, GameObject _NewPlace_for_Receptor, bool _NewInteractivity_for_Receptor)
     {
 
         JointUse_TookPlace = _JointUse_TookPlace;
 
         ObjectBeingCarried_NewPlace = _NewPlace_for_ObjectBeingCarried;
-        ObjectBeingCarried_NewInteractivity = _NewInteractivity_for_ObectBeingCarried;
+        ObjectBeingCarried_NewInteractivity = _NewInteractivity_for_ObjectBeingCarried;
 
         Receptor_NewPlace = _NewPlace_for_Receptor;
         Receptor_NewInteractivity = _NewInteractivity_for_Receptor;
