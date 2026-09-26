@@ -59,17 +59,7 @@ public class HarpsichordTuningPin : InteractableObject
         0.001f;
 
 
-    /*
-    True while the tuning note is being
-    played with the M key.
-
-    The tuner display is updated only
-    while this value is true.
-    */
-    private bool TuningSoundIsPlaying =
-        false;
-
-
+  
     /*
     Remembers whether the hammer has reached
     one of its allowed rotation limits.
@@ -120,10 +110,6 @@ public class HarpsichordTuningPin : InteractableObject
 
         CurrentCents =
             0f;
-
-
-        TuningSoundIsPlaying =
-            false;
 
 
         RotationLimitReached =
@@ -284,6 +270,11 @@ public class HarpsichordTuningPin : InteractableObject
         return angle;
     }
 
+    public bool getRotationLimitReached()
+    {
+        return RotationLimitReached;
+    }
+
     /*
     PHYSICAL TUNING METHOD.
 
@@ -382,12 +373,11 @@ public class HarpsichordTuningPin : InteractableObject
             getControlledKey();
 
 
-        if (key != null)
-        {
+      
             key.setTuningPitch(
                 frequencyRatio
             );
-        }
+        
 
 
         /*
@@ -399,42 +389,11 @@ public class HarpsichordTuningPin : InteractableObject
         the tuner only detects that state
         while the string is sounding.
         */
-        if (harpsichord != null)
-        {
+       
             harpsichord.checkTuningCompletion();
-        }
+        
     }
 
-
-    /*
-    Represents the tuner measuring the
-    currently sounding string.
-    */
-    private void updateTuningDisplay()
-    {
-        if (harpsichord == null)
-            return;
-
-
-        if (harpsichord.TuningDisplay == null)
-            return;
-
-
-        string displayedNote =
-            Note.ToString().Replace(
-                "Sharp",
-                "#"
-            );
-
-
-        harpsichord.TuningDisplay.updateDisplay(
-            displayedNote,
-            TargetFrequency,
-            CurrentFrequency,
-            CurrentCents,
-            RotationLimitReached
-        );
-    }
 
 
     private HarpsichordKey getControlledKey()
@@ -459,89 +418,6 @@ public class HarpsichordTuningPin : InteractableObject
 
 
         return ControlledKey;
-    }
-
-
-    void Update()
-    {
-        /*
-       The M key is available only while
-      the harpsichord is in tuning mode.
-            */
-
-        if (harpsichord == null ||
-            harpsichord.View != Instrument.locked)
-        {
-            return;
-        }
-        /*
-        The tuning sound is available only
-        while a hammer is attached to this pin.
-        */
-
-        if (AttachedHammer == null)
-            return;
-
-
-        HarpsichordKey key =
-            getControlledKey();
-
-
-        if (key == null)
-            return;
-
-
-        /*
-        M PRESSED
-
-        Start playing the string at its
-        current simulated frequency.
-        */
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            key.startTuningSound();
-
-            TuningSoundIsPlaying =
-                true;
-        }
-
-
-        /*
-        M HELD
-
-        While the note is sounding, the
-        tuner continuously "listens".
-
-        Therefore, if the hammer is rotated
-        while M is held, both the sound pitch
-        and the displayed frequency change
-        continuously.
-        */
-
-        if (TuningSoundIsPlaying)
-        {
-            updateTuningDisplay();
-        }
-
-
-        /*
-        M RELEASED
-
-        Stop/fade the note and stop updating
-        the tuner.
-
-        The last detected frequency therefore
-        remains visible.
-        */
-
-        if (Input.GetKeyUp(KeyCode.M))
-        {
-            key.stopTuningSound();
-
-            TuningSoundIsPlaying =
-                false;
-        }
     }
 
 
@@ -688,15 +564,15 @@ public class HarpsichordTuningPin : InteractableObject
         measurement.
         */
 
-        if (harpsichord != null)
-        {
+      
             harpsichord.showHammerInstruction();
-        }
+        
     }
 
 
+   
     public override void evacuate(
-        GameObject _Object)
+GameObject _Object)
     {
         CarryHarpsichordTuningHammer hammer =
             _Object.GetComponent<
@@ -715,19 +591,12 @@ public class HarpsichordTuningPin : InteractableObject
             getControlledKey();
 
 
+        // Stop the tuning sound and tell the
+        // key that tuning playback has ended.
         if (key != null)
         {
             key.stopTuningSound();
         }
-
-
-        /*
-        The tuner must stop listening when
-        the hammer is detached.
-        */
-
-        TuningSoundIsPlaying =
-            false;
 
 
         hammer.transform.SetParent(

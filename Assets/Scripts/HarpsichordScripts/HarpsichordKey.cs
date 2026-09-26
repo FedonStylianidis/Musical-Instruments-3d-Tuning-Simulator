@@ -14,7 +14,7 @@ public class HarpsichordKey : Key
 
     private float TuningPitch = 1f;
 
-
+    private bool TuningSoundIsPlaying;
     public override void Start()
     {
         RotationAxis = Axes.X_Axis;
@@ -118,23 +118,111 @@ public class HarpsichordKey : Key
         Harpsichord harpsichord =
     getHarpsichord();
 
-            harpsichord.showKeyOnTuner(
-                this
-            );
         
+        harpsichord.updateTuningDisplay(this);
+
     }
 
 
+  
     public void setTuningPitch(
-        float pitch)
+    float pitch)
     {
         TuningPitch =
             pitch;
 
 
-            audioSource.pitch =
-                TuningPitch;
-        
+        audioSource.pitch =
+            TuningPitch;
+
+
+        if (audioSource.isPlaying)
+        {
+            Harpsichord harpsichord =
+                getHarpsichord();
+
+
+            harpsichord.updateTuningDisplay(
+                this
+            );
+        }
+    }
+
+    void Update()
+    {
+        Harpsichord harpsichord =
+            getHarpsichord();
+
+
+        // The M key is available only while
+        // the harpsichord is in tuning mode.
+        if (harpsichord.View != Instrument.locked)
+        {
+            return;
+        }
+
+
+        // Find the tuning pin that corresponds
+        // to this harpsichord key.
+        HarpsichordTuningPin pin =
+            harpsichord.GetPin(
+                Note
+            );
+
+
+        // The tuning sound is available only
+        // while the tuning hammer is attached
+        // to this key's tuning pin.
+        if (pin == null|| pin.AttachedHammer == null)
+        {
+            return;
+        }
+
+
+        // M PRESSED
+        //
+        // Start playing the string at its
+        // current simulated frequency.
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            startTuningSound();
+
+            TuningSoundIsPlaying =
+                true;
+        }
+
+
+        // M HELD
+        //
+        // While the note is sounding, the
+        // tuner continuously listens to it.
+        //
+        // Therefore, if the hammer is rotated
+        // while M is held, both the sound pitch
+        // and the displayed frequency change
+        // continuously.
+        if (TuningSoundIsPlaying)
+        {
+            harpsichord.updateTuningDisplay(
+                this
+            );
+        }
+
+
+        // M RELEASED
+        //
+        // Stop/fade the note and stop updating
+        // the tuner.
+        //
+        // The last detected frequency remains
+        // visible.
+        if (Input.GetKeyUp(KeyCode.M))
+        {
+            stopTuningSound();
+
+            TuningSoundIsPlaying =
+                false;
+        }
     }
 
     public float getTuningPitch()
@@ -173,6 +261,8 @@ public class HarpsichordKey : Key
 
     public void stopTuningSound()
     {
+        TuningSoundIsPlaying = false;
+
         release();
     }
 

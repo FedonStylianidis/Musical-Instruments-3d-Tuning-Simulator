@@ -392,19 +392,19 @@ public class Harpsichord : Instrument
         DemoIsPlaying = false;
     }
 
-    public void showKeyOnTuner(
+
+    public void updateTuningDisplay(
     HarpsichordKey key)
     {
         if (key == null)
             return;
 
 
-        // Only show the tuner when the
-        // harpsichord tuning UI is active.
-        if (  !ControlExtraUI.activeInHierarchy)
+        if (!ControlExtraUI.activeInHierarchy)
         {
             return;
         }
+
 
         KeyData data =
             Database.GetKeyData(
@@ -412,14 +412,14 @@ public class Harpsichord : Instrument
             );
 
 
+        if (data == null)
+            return;
+
+
         float targetFrequency =
             data.TargetFrequency;
 
 
-        /*
-        The key's current tuning pitch already
-        contains the effect of tuning its string.
-        */
         float currentFrequency =
             targetFrequency *
             key.getTuningPitch();
@@ -434,13 +434,41 @@ public class Harpsichord : Instrument
             );
 
 
+        HarpsichordTuningPin pin =
+            GetPin(
+                key.Note
+            );
+
+
+        bool rotationLimitReached =
+            pin != null &&
+            pin.getRotationLimitReached();
+
+
         TuningDisplay.updateDisplay(
             data.DisplayName,
             targetFrequency,
             currentFrequency,
             centsDifference,
-            false
+            rotationLimitReached
         );
+    }
+
+    public HarpsichordTuningPin GetPin(
+    HarpsichordNote note)
+    {
+        foreach (
+            HarpsichordTuningPin pin
+            in TuningPins)
+        {
+            if (pin.Note == note)
+            {
+                return pin;
+            }
+        }
+
+
+        return null;
     }
     private IEnumerator PlayDemoNote(
         HarpsichordNote note,
