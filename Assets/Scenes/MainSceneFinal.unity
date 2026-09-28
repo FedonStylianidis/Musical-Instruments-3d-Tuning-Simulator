@@ -1081,10 +1081,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 68.95
   m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 33
@@ -2874,7 +2874,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1393891026}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.28314632
+  m_Size: 0.27946147
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2952,7 +2952,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -469.88477, y: -62}
+  m_AnchoredPosition: {x: -246, y: 17}
   m_SizeDelta: {x: 840.9144, y: 244.1029}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &516818789
@@ -3609,8 +3609,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 827.82446, y: -1525.16}
-  m_SizeDelta: {x: 1655.6489, y: 3050.32}
+  m_AnchoredPosition: {x: 827.82446, y: -1545.27}
+  m_SizeDelta: {x: 1655.6489, y: 3090.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624467678
 MonoBehaviour:
@@ -5059,8 +5059,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 72
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5236,7 +5236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 517.2902, y: -18}
+  m_AnchoredPosition: {x: 517.2902, y: -216}
   m_SizeDelta: {x: 1863.8938, y: 1040.2065}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &861357943
@@ -5302,10 +5302,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 43.75
   m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 33
@@ -5341,7 +5341,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -31.70642, y: 21.101685, z: 0, w: -38.39514}
+  m_margin: {x: -31.70642, y: 21.101685, z: 680.26636, w: 395.18628}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5860,7 +5860,7 @@ MonoBehaviour:
   m_fontSize: 72
   m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 33
@@ -5899,7 +5899,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &976914261
@@ -5946,7 +5946,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 3050.32}
+  m_SizeDelta: {x: 0, y: 3090.54}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &982157920
 MonoBehaviour:
@@ -6167,10 +6167,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 70.25
   m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 33
@@ -6206,7 +6206,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -54.259064, y: 14.149902, z: 30.665161, w: 14.151764}
+  m_margin: {x: -54.259064, y: 14.149902, z: -343.1057, w: 14.151764}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7495,7 +7495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1300931198
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7643,10 +7643,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 51.7
   m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 33
@@ -8213,7 +8213,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 230168655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.7168537}
+  m_AnchorMin: {x: 0, y: 0.7205385}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -8350,10 +8350,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 46.3
   m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 33
@@ -10063,7 +10063,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontSize: 72
-  m_fontSizeBase: 60
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
@@ -10129,7 +10129,7 @@ GameObject:
   - component: {fileID: 1660797520}
   - component: {fileID: 1660797524}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ' CanvasMessageManager'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10374,7 +10374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -435.19098, y: 264}
+  m_AnchoredPosition: {x: -398, y: -35}
   m_SizeDelta: {x: -1009.6619, y: -636.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1695174479
@@ -10870,8 +10870,6 @@ MonoBehaviour:
   MouseCarryOffset: {x: 0, y: 0}
   AttachedToReceptor: 0
   AttachedLug: {fileID: 0}
-  LugAttachmentRotation: {x: 0, y: 0, z: 0}
-  LugAttachmentScale: {x: 1, y: 1, z: 1}
 --- !u!114 &1784625410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12115,7 +12113,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: 3}
+  m_AnchoredPosition: {x: -20, y: 261}
   m_SizeDelta: {x: 780.4982, y: 210.65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2073135632
@@ -12168,7 +12166,7 @@ MonoBehaviour:
   m_fontSize: 72
   m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 33
@@ -12312,7 +12310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2100401006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12861,7 +12859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2144889321
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12879,7 +12877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -435.19098, y: 345}
+  m_AnchoredPosition: {x: -435.19098, y: -122}
   m_SizeDelta: {x: -1009.6619, y: -636.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2144889322
@@ -20415,6 +20413,7 @@ MonoBehaviour:
   SnareDrumInstructionMessage: {fileID: 35142697}
   SnareDrumTuningInstructions1: {fileID: 1176781947}
   SnareDrumTuningInstructions2: {fileID: 110309420}
+  MessageManager: {fileID: 1660797524}
   Drumsticks: {fileID: 8445291729522637407}
 --- !u!114 &919132149191391915
 MonoBehaviour:
@@ -41222,7 +41221,6 @@ MonoBehaviour:
   CurrentAngle: 0
   MinimumTuningCents: -400
   MaximumTuningCents: 200
-  CentsPerDegree: 1
   ShowDebugMessages: 1
 --- !u!114 &3469287837310970975
 MonoBehaviour:
@@ -46502,7 +46500,6 @@ MonoBehaviour:
   LugNumber: 5
   ConnectedSlice: {fileID: 5888327838565368721}
   AttachedTuningKey: {fileID: 0}
-  TuningKeyPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &4031241878868790274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57005,7 +57002,6 @@ MonoBehaviour:
   LugNumber: 1
   ConnectedSlice: {fileID: 8809530721310059942}
   AttachedTuningKey: {fileID: 0}
-  TuningKeyPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!65 &5173165317736170492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72007,7 +72003,6 @@ MonoBehaviour:
   LugNumber: 4
   ConnectedSlice: {fileID: 6024279833726126242}
   AttachedTuningKey: {fileID: 0}
-  TuningKeyPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &6602025387822454068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76697,7 +76692,6 @@ MonoBehaviour:
   LugNumber: 3
   ConnectedSlice: {fileID: 7994933880754010340}
   AttachedTuningKey: {fileID: 0}
-  TuningKeyPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &7030761568593473056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82392,7 +82386,6 @@ MonoBehaviour:
   LugNumber: 9
   ConnectedSlice: {fileID: 2714488173047493301}
   AttachedTuningKey: {fileID: 0}
-  TuningKeyPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &7461903327483734214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90250,7 +90243,6 @@ MonoBehaviour:
   LugNumber: 6
   ConnectedSlice: {fileID: 7359419423963298406}
   AttachedTuningKey: {fileID: 0}
-  TuningKeyPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &8149643362865985713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91652,7 +91644,6 @@ MonoBehaviour:
   LugNumber: 2
   ConnectedSlice: {fileID: 8766668453845493491}
   AttachedTuningKey: {fileID: 0}
-  TuningKeyPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &8297549906545076932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101098,7 +101089,6 @@ MonoBehaviour:
   LugNumber: 10
   ConnectedSlice: {fileID: 8421648238842176842}
   AttachedTuningKey: {fileID: 0}
-  TuningKeyPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &8892016348076637146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104987,7 +104977,6 @@ MonoBehaviour:
   LugNumber: 8
   ConnectedSlice: {fileID: 9017945390598103037}
   AttachedTuningKey: {fileID: 0}
-  TuningKeyPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &9152951219444842306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105282,7 +105271,6 @@ MonoBehaviour:
   LugNumber: 7
   ConnectedSlice: {fileID: 6202006747771345808}
   AttachedTuningKey: {fileID: 0}
-  TuningKeyPositionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &9172340171449298286
 MonoBehaviour:
   m_ObjectHideFlags: 0

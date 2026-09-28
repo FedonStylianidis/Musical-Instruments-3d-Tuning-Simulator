@@ -46,12 +46,15 @@ public class SnareDrumSlice : InteractableObject
     [Header("Glow")]
     public GameObject GlowVisual;
 
+    private void Awake()
+    {
+        audioSource =
+            GetComponent<AudioSource>();
+    }
+
     public override void Start()
     {
         base.Start();
-
-        audioSource =
-            GetComponent<AudioSource>();
 
         updatePitch();
 

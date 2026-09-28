@@ -30,7 +30,7 @@ public class SnareDrum : Instrument
 
     private bool FirstSliceHasBeenTuned ;
 
-    private MessageManager MessageManager;
+    public MessageManager MessageManager;
 
     private SnareTuningAlgorithm TuningAlgorithm;
 
@@ -52,8 +52,6 @@ public class SnareDrum : Instrument
         TuningAlgorithm = GetComponent<SnareTuningAlgorithm>();
 
         randomizeInitialTuning();
-
-        MessageManager = FindFirstObjectByType<MessageManager>();
        
             CorrectPitchMessage.SetActive(false);
             SoundsTunedMessage.SetActive(false);
